@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #25D366; /* Hijau WhatsApp */
+            --primary-color: #25D366;
             --text-main: #2d3436;
             --text-muted: #636e72;
             --bg-body: #f4f6f8;
@@ -28,24 +28,12 @@
         }
 
         .container {
-            max-width: 600px; /* Ukuran pas untuk layar HP */
+            max-width: 600px;
             margin: 0 auto;
             background-color: var(--bg-card);
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Efek bayangan lembut */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             overflow: hidden;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #b2bec3;
-            font-size: 14px;
-            border-bottom: 1px solid #eee;
         }
 
         .content {
@@ -172,18 +160,14 @@
         @media (max-width: 480px) {
             .content { padding: 20px; }
             .pricing-table td { padding: 12px 5px; }
-            .hero-image { height: 150px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Area Kotak Foto -->
-    <div class="hero-image">
-        <i class="fa-solid fa-image fa-2x" style="margin-right: 10px;"></i> 
-        <span>Area Foto Produk (Bisa diisi nanti)</span>
-    </div>
+    <!-- FOTO PRODUK MENGGUNAKAN LINK INTERNET LANGSUNG -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pempek_Palembang.jpg/800px-Pempek_Palembang.jpg" alt="Pempek Ibu Ita" style="width: 100%; height: 250px; object-fit: cover; display: block; border-bottom: 1px solid #eee;">
 
     <div class="content">
         <!-- Header -->
@@ -242,7 +226,7 @@
             </tbody>
         </table>
 
-        <!-- Tombol WA (Ganti XXXXXXXXXX dengan nomor HP tanpa angka 0 di depan) -->
+        <!-- Tombol WA (Jangan lupa ganti nomornya di bagian 628XXXXXXXXXX) -->
         <a href="https://wa.me/628XXXXXXXXXX?text=Halo%20Ibu%20Ita,%20saya%20tertarik%20menjadi%20reseller%20pempek%20dan%20tekwan." class="btn-wa">
             <i class="fa-brands fa-whatsapp fa-xl"></i>
             Gabung Reseller via WhatsApp
