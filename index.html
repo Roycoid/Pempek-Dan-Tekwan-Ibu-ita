@@ -36,6 +36,46 @@
             overflow: hidden;
         }
 
+        /* --- KODE BARU UNTUK FOTO BISA DIGESER --- */
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .image-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+        }
+        
+        .image-slider::-webkit-scrollbar {
+            display: none; /* Sembunyikan scrollbar di Chrome/Safari */
+        }
+
+        .image-slider img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            flex: 0 0 100%; /* Memaksa setiap foto mengambil lebar penuh */
+            scroll-snap-align: start;
+        }
+
+        .swipe-hint {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+        }
+        /* --------------------------------------- */
+
         .content {
             padding: 30px;
         }
@@ -166,8 +206,22 @@
 <body>
 
 <div class="container">
-    <!-- FOTO PRODUK BARU -->
-    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pempek Ibu Ita" style="width: 100%; height: 250px; object-fit: cover; display: block; border-bottom: 1px solid #eee;">
+    
+    <!-- FOTO SLIDER (BISA DIGESER) -->
+    <div class="slider-wrapper">
+        <div class="image-slider">
+            <!-- Foto 1 (Pempek/Mangkuk) -->
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pempek Kapal Selam">
+            <!-- Foto 2 (Varian Gorengan/Camilan) -->
+            <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Varian Pempek Goreng">
+            <!-- Foto 3 (Tekwan/Kuah) -->
+            <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tekwan Kuah Panas">
+        </div>
+        <!-- Label Petunjuk Geser -->
+        <div class="swipe-hint">
+            <i class="fa-solid fa-arrows-left-right"></i> Geser
+        </div>
+    </div>
 
     <div class="content">
         <!-- Header -->
@@ -227,7 +281,7 @@
         </table>
 
         <!-- Tombol WA -->
-        <!-- PENTING: Ganti tulisan 628XXXXXXXXXX di bawah ini dengan nomor WA teman -->
+        <!-- PENTING: Jangan lupa ganti 628XXXXXXXXXX dengan nomor WA aslinya! -->
         <a href="https://wa.me/628XXXXXXXXXX?text=Halo%20Ibu%20Ita,%20saya%20tertarik%20menjadi%20reseller%20pempek%20dan%20tekwan." class="btn-wa">
             <i class="fa-brands fa-whatsapp fa-xl"></i>
             Gabung Reseller via WhatsApp
