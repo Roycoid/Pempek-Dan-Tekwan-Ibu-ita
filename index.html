@@ -3,43 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peluang Reseller Pempek Ibu Ita</title>
-    <!-- Import Font Poppins dari Google -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Import Ikon -->
+    <title>Peluang Reseller Pempek Ibu Ita | Untung Maksimal</title>
+    
+    <!-- Meta Tags untuk SEO & Social Media Share -->
+    <meta name="description" content="Gabung jadi reseller Pempek Ibu Ita. Produk higienis, tahan lama, dan margin untung besar!">
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary-color: #25D366;
-            --text-main: #2d3436;
-            --text-muted: #636e72;
-            --bg-body: #f4f6f8;
+            --brand-color: #e67e22; /* Oranye khas makanan */
+            --brand-dark: #d35400;
+            --wa-color: #25D366;
+            --wa-dark: #1ebe5d;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --bg-main: #f8f9fa;
             --bg-card: #ffffff;
-            --accent-red: #e74c3c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            margin: 0;
-            padding: 20px;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
             line-height: 1.6;
+            padding-bottom: 80px; /* Space for floating button */
         }
 
         .container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             background-color: var(--bg-card);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            min-height: 100vh;
         }
 
-        /* --- KODE BARU UNTUK FOTO BISA DIGESER --- */
+        /* --- Header & Hero Section --- */
+        .header {
+            text-align: center;
+            padding: 25px 20px;
+            background: linear-gradient(135deg, #fff, #fef9f5);
+            border-bottom: 1px solid #f1f2f6;
+        }
+
+        .brand-name {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            letter-spacing: 0.5px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* --- Slider FOTO --- */
         .slider-wrapper {
             position: relative;
             width: 100%;
+            background-color: #000;
         }
 
         .image-slider {
@@ -47,70 +80,93 @@
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+            scrollbar-width: none;
         }
         
-        .image-slider::-webkit-scrollbar {
-            display: none; /* Sembunyikan scrollbar di Chrome/Safari */
-        }
+        .image-slider::-webkit-scrollbar { display: none; }
 
         .image-slider img {
             width: 100%;
-            height: 250px;
+            height: 300px;
             object-fit: cover;
-            flex: 0 0 100%; /* Memaksa setiap foto mengambil lebar penuh */
+            flex: 0 0 100%;
             scroll-snap-align: start;
+            opacity: 0.9;
+            transition: opacity 0.3s;
         }
 
         .swipe-hint {
             position: absolute;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.6);
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
+            padding: 6px 15px;
+            border-radius: 25px;
             font-size: 12px;
-            pointer-events: none;
-            backdrop-filter: blur(4px);
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
-        /* --------------------------------------- */
 
+        /* --- Main Content Area --- */
         .content {
-            padding: 30px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 0 0 5px 0;
-            color: #2d3436;
-        }
-
-        .header p {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin: 0;
+            padding: 30px 25px;
         }
 
         .section-title {
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--brand-color);
+        }
+
+        /* --- Fitur / Keunggulan --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 15px 10px;
+            background: #fffbf8;
+            border: 1px solid #fdf0e6;
+            border-radius: 12px;
+        }
+
+        .feature-box i {
+            font-size: 24px;
+            color: var(--brand-color);
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            font-size: 12px;
             font-weight: 600;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 5px;
-            display: inline-block;
+            line-height: 1.3;
+        }
+
+        /* --- Syarat Reseller --- */
+        .syarat-card {
+            background-color: var(--bg-main);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            border-left: 4px solid var(--brand-color);
         }
 
         .syarat-list {
             list-style: none;
-            padding: 0;
-            margin: 0 0 30px 0;
         }
 
         .syarat-list li {
@@ -118,88 +174,114 @@
             margin-bottom: 12px;
             display: flex;
             align-items: flex-start;
-            gap: 10px;
+            gap: 12px;
         }
 
         .syarat-list li i {
-            color: var(--primary-color);
-            margin-top: 4px;
+            color: var(--brand-color);
+            margin-top: 3px;
+            font-size: 16px;
         }
 
-        .pricing-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
+        /* --- Pricing Cards Modern --- */
+        .pricing-container {
+            display: grid;
+            gap: 15px;
             margin-bottom: 30px;
         }
 
-        .pricing-table th {
-            background-color: #f8f9fa;
-            padding: 12px 15px;
-            font-size: 13px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            border-bottom: 2px solid #eee;
-            text-align: left;
+        .price-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            background: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .pricing-table th:last-child {
-            text-align: right;
+        .price-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+            border-color: var(--brand-color);
         }
 
-        .pricing-table td {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .pricing-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .product-name {
-            font-weight: 600;
+        .product-info h3 {
             font-size: 15px;
-            margin: 0;
+            font-weight: 600;
+            margin-bottom: 4px;
         }
 
-        .retail-price {
+        .product-info p {
             font-size: 12px;
-            color: var(--text-muted);
+            color: var(--text-light);
             text-decoration: line-through;
-            margin: 0;
         }
 
-        .reseller-price {
-            font-weight: 700;
-            color: var(--accent-red);
-            font-size: 16px;
+        .price-tag {
             text-align: right;
         }
 
-        .btn-wa {
+        .price-tag .label {
+            font-size: 11px;
+            color: var(--brand-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .price-tag .amount {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* --- Floating WhatsApp Button --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 90%;
+            max-width: 600px;
+            background-color: var(--wa-color);
+            color: white;
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            padding: 16px;
-            border-radius: 8px;
             font-weight: 600;
             font-size: 16px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            z-index: 100;
             transition: all 0.3s ease;
         }
 
-        .btn-wa:hover {
-            background-color: #1ebe5d;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-            transform: translateY(-2px);
+        .floating-wa:hover {
+            background-color: var(--wa-dark);
+            transform: translate(50%, -3px);
         }
 
+        /* Responsive Breakpoints */
         @media (max-width: 480px) {
-            .content { padding: 20px; }
-            .pricing-table td { padding: 12px 5px; }
+            .content { padding: 25px 15px; }
+            .features-grid { gap: 10px; }
+            .feature-box p { font-size: 11px; }
+            .price-card { padding: 15px; flex-direction: column; align-items: flex-start; gap: 10px; }
+            .price-tag { text-align: left; }
         }
     </style>
 </head>
@@ -207,87 +289,131 @@
 
 <div class="container">
     
-    <!-- FOTO SLIDER (BISA DIGESER) -->
+    <!-- Header -->
+    <header class="header">
+        <div class="brand-name">Pempek Ibu Ita</div>
+        <div class="tagline">Asli Palembang, Terasa Ikan Tenggirinya!</div>
+    </header>
+
+    <!-- Slider Foto -->
     <div class="slider-wrapper">
         <div class="image-slider">
-            <!-- Foto 1 (Pempek/Mangkuk) -->
+            <!-- Gunakan foto HD yang menggiurkan -->
             <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pempek Kapal Selam">
-            <!-- Foto 2 (Varian Gorengan/Camilan) -->
             <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Varian Pempek Goreng">
-            <!-- Foto 3 (Tekwan/Kuah) -->
             <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tekwan Kuah Panas">
         </div>
-        <!-- Label Petunjuk Geser -->
         <div class="swipe-hint">
-            <i class="fa-solid fa-arrows-left-right"></i> Geser
+            <i class="fa-solid fa-hand-pointer"></i> Geser Foto
         </div>
     </div>
 
     <div class="content">
-        <!-- Header -->
-        <div class="header">
-            <h1>Peluang Reseller Pempek Ibu Ita</h1>
-            <p>Higienis, Praktis, & Cepat Laku!</p>
+        
+        <!-- Seksi Keunggulan (Why Us) -->
+        <div class="features-grid">
+            <div class="feature-box">
+                <i class="fa-solid fa-leaf"></i>
+                <p>100% Tanpa<br>Pengawet</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-snowflake"></i>
+                <p>Tahan 3 Bulan<br>di Freezer</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-chart-line"></i>
+                <p>Margin Untung<br>Sangat Besar</p>
+            </div>
         </div>
 
         <!-- Syarat & Ketentuan -->
-        <h2 class="section-title">Syarat & Ketentuan</h2>
-        <ul class="syarat-list">
-            <li><i class="fa-solid fa-circle-check"></i> Minimal pembelian awal adalah 15 Paket (boleh campur varian).</li>
-            <li><i class="fa-solid fa-circle-check"></i> Pembelian selanjutnya minimal 10 Paket untuk mendapatkan harga grosir.</li>
-            <li><i class="fa-solid fa-circle-check"></i> Produk tahan hingga 3 bulan di freezer, sangat aman untuk distok.</li>
-            <li><i class="fa-solid fa-circle-check"></i> Pengiriman area Jakarta Barat gratis ongkir (syarat berlaku).</li>
-        </ul>
+        <h2 class="section-title"><i class="fa-solid fa-handshake"></i> Syarat Mudah Gabung</h2>
+        <div class="syarat-card">
+            <ul class="syarat-list">
+                <li><i class="fa-solid fa-check-circle"></i> Pembelian awal minimal 15 Paket (bebas campur varian).</li>
+                <li><i class="fa-solid fa-check-circle"></i> Pembelian berikutnya cukup minimal 10 Paket untuk harga grosir.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Tersedia grup bimbingan materi promosi.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Gratis ongkir khusus area Jakarta Barat (S&K berlaku).</li>
+            </ul>
+        </div>
 
-        <!-- Tabel Harga -->
-        <h2 class="section-title">Daftar Harga Grosir</h2>
-        <table class="pricing-table">
-            <thead>
-                <tr>
-                    <th>Nama Paket Frozen</th>
-                    <th>Harga Reseller</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <p class="product-name">Paket Mix (Isi 10)</p>
-                        <p class="retail-price">Eceran: Rp 35.000</p>
-                    </td>
-                    <td class="reseller-price">Rp 28.000</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p class="product-name">Paket Kapal Selam Combo</p>
-                        <p class="retail-price">Eceran: Rp 38.000</p>
-                    </td>
-                    <td class="reseller-price">Rp 31.000</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p class="product-name">Paket Keluarga (Isi 20)</p>
-                        <p class="retail-price">Eceran: Rp 65.000</p>
-                    </td>
-                    <td class="reseller-price">Rp 55.000</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p class="product-name">Paket Tekwan Praktis</p>
-                        <p class="retail-price">Eceran: Rp 28.000</p>
-                    </td>
-                    <td class="reseller-price">Rp 23.000</td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- Kartu Harga -->
+        <h2 class="section-title"><i class="fa-solid fa-tags"></i> Harga Khusus Reseller</h2>
+        <div class="pricing-container">
+            <!-- Kartu 1 -->
+            <div class="price-card">
+                <div class="product-info">
+                    <h3>Paket Mix (Isi 10)</h3>
+                    <p>Harga Jual: Rp 35.000</p>
+                </div>
+                <div class="price-tag">
+                    <span class="label">Harga Modal</span>
+                    <span class="amount">Rp 28.000</span>
+                </div>
+            </div>
+            <!-- Kartu 2 -->
+            <div class="price-card">
+                <div class="product-info">
+                    <h3>Paket Kapal Selam</h3>
+                    <p>Harga Jual: Rp 38.000</p>
+                </div>
+                <div class="price-tag">
+                    <span class="label">Harga Modal</span>
+                    <span class="amount">Rp 31.000</span>
+                </div>
+            </div>
+            <!-- Kartu 3 -->
+            <div class="price-card">
+                <div class="product-info">
+                    <h3>Paket Keluarga (Isi 20)</h3>
+                    <p>Harga Jual: Rp 65.000</p>
+                </div>
+                <div class="price-tag">
+                    <span class="label">Harga Modal</span>
+                    <span class="amount">Rp 55.000</span>
+                </div>
+            </div>
+            <!-- Kartu 4 -->
+            <div class="price-card">
+                <div class="product-info">
+                    <h3>Paket Tekwan Praktis</h3>
+                    <p>Harga Jual: Rp 28.000</p>
+                </div>
+                <div class="price-tag">
+                    <span class="label">Harga Modal</span>
+                    <span class="amount">Rp 23.000</span>
+                </div>
+            </div>
+        </div>
 
-        <!-- Tombol WA -->
-        <!-- PENTING: Jangan lupa ganti 628XXXXXXXXXX dengan nomor WA aslinya! -->
-        <a href="https://wa.me/628XXXXXXXXXX?text=Halo%20Ibu%20Ita,%20saya%20tertarik%20menjadi%20reseller%20pempek%20dan%20tekwan." class="btn-wa">
-            <i class="fa-brands fa-whatsapp fa-xl"></i>
-            Gabung Reseller via WhatsApp
-        </a>
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Pempek Ibu Ita. Semua Hak Dilindungi.</p>
+        </footer>
+
     </div>
 </div>
+
+<!-- Floating WhatsApp Button -->
+<!-- PENTING: Ganti 628XXXXXXXXXX dengan nomor asli -->
+<a href="https://wa.me/628XXXXXXXXXX?text=Halo%20Ibu%20Ita,%20saya%20tertarik%20mengambil%20peluang%20reseller%20pempeknya.%20Boleh%20minta%20info%20lebih%20lanjut?" class="floating-wa" target="_blank">
+    <i class="fa-brands fa-whatsapp fa-xl"></i>
+    Klik di Sini untuk Gabung Reseller
+</a>
+
+<!-- Script Geser Foto Otomatis (Opsional) -->
+<script>
+    const slider = document.querySelector('.image-slider');
+    let scrollAmount = 0;
+    
+    setInterval(() => {
+        if(slider) {
+            scrollAmount += slider.clientWidth;
+            if(scrollAmount >= slider.scrollWidth) { scrollAmount = 0; }
+            slider.scrollTo({ top: 0, left: scrollAmount, behavior: 'smooth' });
+        }
+    }, 4000);
+</script>
 
 </body>
 </html>
