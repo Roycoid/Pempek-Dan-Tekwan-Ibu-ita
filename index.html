@@ -3,145 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kemitraan Reseller - Pempek Ibu Ita</title>
+    <title>Peluang Reseller Pempek Ibu Ita</title>
+    <!-- Import Font Poppins dari Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Import Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #25D366; /* Hijau WhatsApp */
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --bg-body: #f4f6f8;
+            --bg-card: #ffffff;
+            --accent-red: #e74c3c;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #fcfcfc;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            line-height: 1.6;
         }
+
         .container {
-            max-width: 600px;
+            max-width: 600px; /* Ukuran pas untuk layar HP */
             margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Efek bayangan lembut */
+            overflow: hidden;
         }
-        h1, h2 {
-            text-align: center;
-            color: #222;
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        table {
+
+        .hero-image {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
+            height: 200px;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b2bec3;
+            font-size: 14px;
             border-bottom: 1px solid #eee;
         }
-        th {
-            background-color: #f9f9f9;
-            font-weight: 600;
+
+        .content {
+            padding: 30px;
         }
-        .price-normal {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 12px;
-        }
-        .price-reseller {
-            font-weight: bold;
-            color: #d32f2f;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        .cta-button {
-            display: block;
-            width: 100%;
-            background-color: #25D366; /* WhatsApp Green */
-            color: #fff;
+
+        .header {
             text-align: center;
-            padding: 15px 0;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            margin-top: 40px;
-            box-shadow: 0 4px 6px rgba(37, 211, 102, 0.3);
-            transition: background-color 0.3s;
+            margin-bottom: 30px;
         }
-        .cta-button:hover {
-            background-color: #128C7E;
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            color: #2d3436;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .syarat-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+
+        .syarat-list li {
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .syarat-list li i {
+            color: var(--primary-color);
+            margin-top: 4px;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 30px;
+        }
+
+        .pricing-table th {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 2px solid #eee;
+            text-align: left;
+        }
+
+        .pricing-table th:last-child {
+            text-align: right;
+        }
+
+        .pricing-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .product-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin: 0;
+        }
+
+        .retail-price {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin: 0;
+        }
+
+        .reseller-price {
+            font-weight: 700;
+            color: var(--accent-red);
+            font-size: 16px;
+            text-align: right;
+        }
+
+        .btn-wa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-wa:hover {
+            background-color: #1ebe5d;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 480px) {
+            .content { padding: 20px; }
+            .pricing-table td { padding: 12px 5px; }
+            .hero-image { height: 150px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Peluang Reseller Pempek Ibu Ita</h1>
-        <div class="subtitle">Higienis, Praktis, & Cepat Laku!</div>
+<div class="container">
+    <!-- Area Kotak Foto -->
+    <div class="hero-image">
+        <i class="fa-solid fa-image fa-2x" style="margin-right: 10px;"></i> 
+        <span>Area Foto Produk (Bisa diisi nanti)</span>
+    </div>
 
-        <div class="section">
-            <h2>Syarat & Ketentuan</h2>
-            <ul>
-                <li>Minimal pembelian awal adalah <strong>15 Paket</strong> (boleh campur varian).</li>
-                <li>Pembelian selanjutnya minimal 10 Paket untuk mendapatkan harga grosir.</li>
-                <li>Produk tahan hingga 3 bulan di freezer, sangat aman untuk distok.</li>
-                <li>Pengiriman area Jakarta Barat gratis ongkir (syarat berlaku).</li>
-            </ul>
+    <div class="content">
+        <!-- Header -->
+        <div class="header">
+            <h1>Peluang Reseller Pempek Ibu Ita</h1>
+            <p>Higienis, Praktis, & Cepat Laku!</p>
         </div>
 
-        <div class="section">
-            <h2>Daftar Harga Grosir</h2>
-            <table>
+        <!-- Syarat & Ketentuan -->
+        <h2 class="section-title">Syarat & Ketentuan</h2>
+        <ul class="syarat-list">
+            <li><i class="fa-solid fa-circle-check"></i> Minimal pembelian awal adalah 15 Paket (boleh campur varian).</li>
+            <li><i class="fa-solid fa-circle-check"></i> Pembelian selanjutnya minimal 10 Paket untuk mendapatkan harga grosir.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Produk tahan hingga 3 bulan di freezer, sangat aman untuk distok.</li>
+            <li><i class="fa-solid fa-circle-check"></i> Pengiriman area Jakarta Barat gratis ongkir (syarat berlaku).</li>
+        </ul>
+
+        <!-- Tabel Harga -->
+        <h2 class="section-title">Daftar Harga Grosir</h2>
+        <table class="pricing-table">
+            <thead>
                 <tr>
                     <th>Nama Paket Frozen</th>
                     <th>Harga Reseller</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td>
-                        <strong>Paket Mix (Isi 10)</strong><br>
-                        <span class="price-normal">Eceran: Rp 35.000</span>
+                        <p class="product-name">Paket Mix (Isi 10)</p>
+                        <p class="retail-price">Eceran: Rp 35.000</p>
                     </td>
-                    <td class="price-reseller">Rp 28.000</td>
+                    <td class="reseller-price">Rp 28.000</td>
                 </tr>
                 <tr>
                     <td>
-                        <strong>Paket Kapal Selam Combo</strong><br>
-                        <span class="price-normal">Eceran: Rp 38.000</span>
+                        <p class="product-name">Paket Kapal Selam Combo</p>
+                        <p class="retail-price">Eceran: Rp 38.000</p>
                     </td>
-                    <td class="price-reseller">Rp 31.000</td>
+                    <td class="reseller-price">Rp 31.000</td>
                 </tr>
                 <tr>
                     <td>
-                        <strong>Paket Keluarga (Isi 20)</strong><br>
-                        <span class="price-normal">Eceran: Rp 65.000</span>
+                        <p class="product-name">Paket Keluarga (Isi 20)</p>
+                        <p class="retail-price">Eceran: Rp 65.000</p>
                     </td>
-                    <td class="price-reseller">Rp 55.000</td>
+                    <td class="reseller-price">Rp 55.000</td>
                 </tr>
                 <tr>
                     <td>
-                        <strong>Paket Tekwan Praktis</strong><br>
-                        <span class="price-normal">Eceran: Rp 28.000</span>
+                        <p class="product-name">Paket Tekwan Praktis</p>
+                        <p class="retail-price">Eceran: Rp 28.000</p>
                     </td>
-                    <td class="price-reseller">Rp 23.000</td>
+                    <td class="reseller-price">Rp 23.000</td>
                 </tr>
-            </table>
-        </div>
+            </tbody>
+        </table>
 
-        <!-- Ubah nomor HP di bawah ini, buang angka 0 paling depan, ganti dengan 62 -->
-        <a href="https://wa.me/6289508573323?text=Halo%20Ibu%20Ita,%20saya%20sudah%20membaca%20syarat%20reseller%20di%20website%20dan%20tertarik%20untuk%20bergabung." class="cta-button">
+        <!-- Tombol WA (Ganti XXXXXXXXXX dengan nomor HP tanpa angka 0 di depan) -->
+        <a href="https://wa.me/628XXXXXXXXXX?text=Halo%20Ibu%20Ita,%20saya%20tertarik%20menjadi%20reseller%20pempek%20dan%20tekwan." class="btn-wa">
+            <i class="fa-brands fa-whatsapp fa-xl"></i>
             Gabung Reseller via WhatsApp
         </a>
     </div>
+</div>
 
 </body>
 </html>
