@@ -202,40 +202,25 @@
 
         .value-text p { font-size: 13px; color: var(--text-muted); }
 
-        /* --- Katalog Menu --- */
+        /* --- Katalog Menu (Diperbarui untuk Banner) --- */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: 1fr; /* Diubah jadi 1 kolom karena gambar banner lebar */
+            gap: 20px;
         }
 
         .menu-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
+            background: transparent;
             border-radius: 12px;
             overflow: hidden;
-            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
         }
 
         .menu-card img {
             width: 100%;
-            height: 100px;
-            object-fit: cover;
-        }
-
-        .menu-card-body {
-            padding: 12px;
-        }
-
-        .menu-card-body h4 {
-            font-size: 14px;
-            color: var(--dark);
-            margin-bottom: 4px;
-        }
-
-        .menu-card-body p {
-            font-size: 11px;
-            color: var(--text-muted);
+            height: auto; /* Tinggi menyesuaikan proporsi banner */
+            display: block;
         }
 
         /* --- Alur Kerja (Steps) --- */
@@ -510,6 +495,7 @@
     <!-- Galeri Slider Foto Produk -->
     <div class="slider-wrapper reveal">
         <div class="image-slider">
+            <!-- Disini Anda bisa tetap menggunakan Unsplash untuk ilustrasi hero banner atau menggantinya nanti dengan foto asli yang lebar -->
             <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pempek Kapal Selam Premium">
             <img src="https://images.unsplash.com/photo-1626804475297-41609ea004eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Varian Pempek Goreng">
             <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tekwan Kuah Segar">
@@ -551,41 +537,26 @@
         </div>
     </section>
 
-    <!-- Katalog Menu -->
+    <!-- Katalog Paket Frozen (Menggunakan Gambar Banners Baru) -->
     <section class="section" style="background-color: var(--bg-body);">
         <div class="section-header reveal">
-            <h2 class="section-title">Katalog Menu</h2>
-            <p class="section-subtitle">Varian favorit yang selalu dicari pelanggan</p>
+            <h2 class="section-title">Katalog Paket Frozen</h2>
+            <p class="section-subtitle">Pilihan paket lengkap yang siap Anda pasarkan</p>
         </div>
 
         <div class="menu-grid">
+            <!-- Memasukkan gambar-gambar banner yang sudah dipecah -->
             <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=400&q=80" alt="Kapal Selam">
-                <div class="menu-card-body">
-                    <h4>Kapal Selam</h4>
-                    <p>Isian telur utuh berpadu dengan cuko pedas.</p>
-                </div>
+                <img src="images/paket-mix.png" alt="Paket Mix Frozen">
             </div>
             <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1626804475297-41609ea004eb?auto=format&fit=crop&w=400&q=80" alt="Lenjer & Adaan">
-                <div class="menu-card-body">
-                    <h4>Lenjer & Adaan</h4>
-                    <p>Varian klasik yang kenyal dan gurih.</p>
-                </div>
+                <img src="images/paket-kapal-selam.png" alt="Paket Kapal Selam Combo">
             </div>
             <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=400&q=80" alt="Tekwan">
-                <div class="menu-card-body">
-                    <h4>Tekwan Kuah</h4>
-                    <p>Disajikan hangat dengan kaldu udang segar.</p>
-                </div>
+                <img src="images/paket-keluarga.png" alt="Paket Keluarga Besar">
             </div>
             <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?auto=format&fit=crop&w=400&q=80" alt="Cuko Asli">
-                <div class="menu-card-body">
-                    <h4>Cuko Khas</h4>
-                    <p>Kental, pedas, asam, manis yang pas.</p>
-                </div>
+                <img src="images/paket-tekwan.png" alt="Paket Tekwan Praktis">
             </div>
         </div>
     </section>
