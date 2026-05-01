@@ -202,10 +202,10 @@
 
         .value-text p { font-size: 13px; color: var(--text-muted); }
 
-        /* --- Katalog Menu (Diperbarui untuk Banner) --- */
+        /* --- Katalog Menu --- */
         .menu-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Diubah jadi 1 kolom karena gambar banner lebar */
+            grid-template-columns: 1fr; /* 1 Kolom agar memanjang */
             gap: 20px;
         }
 
@@ -219,7 +219,8 @@
 
         .menu-card img {
             width: 100%;
-            height: auto; /* Tinggi menyesuaikan proporsi banner */
+            height: 220px; /* Tinggi diatur agar proporsional */
+            object-fit: cover;
             display: block;
         }
 
@@ -495,7 +496,6 @@
     <!-- Galeri Slider Foto Produk -->
     <div class="slider-wrapper reveal">
         <div class="image-slider">
-            <!-- Disini Anda bisa tetap menggunakan Unsplash untuk ilustrasi hero banner atau menggantinya nanti dengan foto asli yang lebar -->
             <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pempek Kapal Selam Premium">
             <img src="https://images.unsplash.com/photo-1626804475297-41609ea004eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Varian Pempek Goreng">
             <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tekwan Kuah Segar">
@@ -537,7 +537,7 @@
         </div>
     </section>
 
-    <!-- Katalog Paket Frozen (Menggunakan Gambar Banners Baru) -->
+    <!-- Katalog Paket Frozen -->
     <section class="section" style="background-color: var(--bg-body);">
         <div class="section-header reveal">
             <h2 class="section-title">Katalog Paket Frozen</h2>
@@ -545,18 +545,21 @@
         </div>
 
         <div class="menu-grid">
-            <!-- Memasukkan gambar-gambar banner yang sudah dipecah -->
+            <!-- Ilustrasi Gambar 1 -->
             <div class="menu-card reveal">
-                <img src="images/paket-mix.png" alt="Paket Mix Frozen">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Paket Mix Frozen">
             </div>
+            <!-- Ilustrasi Gambar 2 -->
             <div class="menu-card reveal">
-                <img src="images/paket-kapal-selam.png" alt="Paket Kapal Selam Combo">
+                <img src="https://images.unsplash.com/photo-1626804475297-41609ea004eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Paket Kapal Selam Combo">
             </div>
+            <!-- Ilustrasi Gambar 3 -->
             <div class="menu-card reveal">
-                <img src="images/paket-keluarga.png" alt="Paket Keluarga Besar">
+                <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Paket Keluarga Besar">
             </div>
+            <!-- Ilustrasi Gambar 4 -->
             <div class="menu-card reveal">
-                <img src="images/paket-tekwan.png" alt="Paket Tekwan Praktis">
+                <img src="https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Paket Tekwan Praktis">
             </div>
         </div>
     </section>
@@ -650,7 +653,6 @@
         <div class="calculator-card reveal">
             <div class="calc-label">Target Jual per Hari: <br><span id="targetVal" class="highlight-text">10 Paket</span></div>
             
-            <!-- Slider (Range 1 sampai 100 paket per hari) -->
             <input type="range" id="salesSlider" min="1" max="100" value="10" class="slider">
             
             <div class="calc-result">
@@ -708,7 +710,6 @@
 </div>
 
 <!-- Sticky Bottom CTA -->
-<!-- GANTI 628XXXXXXXXXX DI BAWAH INI DENGAN NOMOR WA ANDA -->
 <div class="sticky-bottom">
     <a href="https://wa.me/628XXXXXXXXXX?text=Halo%20Tim%20Kemitraan%20Pempek%20Ibu%20Ita.%20Saya%20ingin%20mendapatkan%20informasi%20pendaftaran%20mitra%20reseller." class="btn-primary" target="_blank">
         <i class="fa-brands fa-whatsapp" style="font-size: 20px; color: var(--wa-green);"></i>
@@ -718,7 +719,6 @@
 
 <!-- Scripts -->
 <script>
-    // 1. Script Auto-Geser Slider Foto
     const slider = document.querySelector('.image-slider');
     let scrollPos = 0;
     
@@ -736,7 +736,6 @@
         }
     }, 3500);
 
-    // 2. Script Animasi Scroll (Intersection Observer)
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
@@ -753,7 +752,6 @@
     window.addEventListener("scroll", reveal);
     reveal(); 
 
-    // 3. Script Kalkulator Keuntungan
     const salesSlider = document.getElementById('salesSlider');
     const targetVal = document.getElementById('targetVal');
     const profitTotal = document.getElementById('profitTotal');
@@ -775,7 +773,6 @@
         profitTotal.textContent = formatRupiah(monthlyProfit);
     });
 
-    // 4. Script Countdown Timer 
     function startCountdown() {
         function updateTimer() {
             const now = new Date();
