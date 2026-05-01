@@ -205,12 +205,12 @@
         /* --- Katalog Menu --- */
         .menu-grid {
             display: grid;
-            grid-template-columns: 1fr; /* 1 Kolom agar memanjang */
+            grid-template-columns: 1fr; 
             gap: 20px;
         }
 
         .menu-card {
-            background: transparent;
+            background: var(--bg-white); /* Disesuaikan untuk desain gambar baru */
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
@@ -219,8 +219,8 @@
 
         .menu-card img {
             width: 100%;
-            height: 220px; /* Tinggi diatur agar proporsional */
-            object-fit: cover;
+            height: auto; /* Membiarkan tinggi menyesuaikan proporsi asli */
+            object-fit: contain; /* Memastikan semua info harga dan teks tidak terpotong */
             display: block;
         }
 
@@ -545,21 +545,24 @@
         </div>
 
         <div class="menu-grid">
-            <!-- Ilustrasi Gambar 1 -->
+            <!-- Paket Mix -->
             <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Paket Mix Frozen">
+                <img src="Gemini_Generated_Image_npbap9npbap9npba (4).jpg" alt="Paket Mix Frozen" loading="lazy">
             </div>
-            <!-- Ilustrasi Gambar 2 -->
+            
+            <!-- Paket Kapal Selam Combo -->
             <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1626804475297-41609ea004eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Paket Kapal Selam Combo">
+                <img src="Gemini_Generated_Image_npbap9npbap9npba (3).jpg" alt="Paket Kapal Selam Combo" loading="lazy">
             </div>
-            <!-- Ilustrasi Gambar 3 -->
+            
+            <!-- Paket Keluarga Besar -->
             <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Paket Keluarga Besar">
+                <img src="Gemini_Generated_Image_npbap9npbap9npba (1).jpg" alt="Paket Keluarga Besar" loading="lazy">
             </div>
-            <!-- Ilustrasi Gambar 4 -->
+            
+            <!-- Paket Tekwan Praktis -->
             <div class="menu-card reveal">
-                <img src="https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Paket Tekwan Praktis">
+                <img src="Gemini_Generated_Image_npbap9npbap9npba.jpg" alt="Paket Tekwan Praktis" loading="lazy">
             </div>
         </div>
     </section>
@@ -653,7 +656,7 @@
         <div class="calculator-card reveal">
             <div class="calc-label">Target Jual per Hari: <br><span id="targetVal" class="highlight-text">10 Paket</span></div>
             
-            <input type="range" id="salesSlider" min="1" max="100" value="10" class="slider">
+            <input type="range" id="salesSlider" min="1" max="100" value="10" class="slider" aria-label="Target Jual per Hari">
             
             <div class="calc-result">
                 <p>Potensi Laba Bersih per Bulan (30 Hari):</p>
