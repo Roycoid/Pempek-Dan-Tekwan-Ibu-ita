@@ -292,6 +292,87 @@
         .pricing-reseller { font-size: 20px; font-weight: 800; color: var(--primary); margin: 5px 0; }
         .pricing-margin { font-size: 11px; font-weight: 600; color: #16a34a; background: #dcfce7; padding: 3px 8px; border-radius: 20px; display: inline-block; }
 
+        /* --- Promo Banner (Countdown) --- */
+        .promo-banner {
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.2);
+        }
+
+        .promo-badge {
+            background: #fde047;
+            color: #b45309;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .promo-banner h3 { font-size: 16px; margin-bottom: 5px; }
+        .promo-banner p { font-size: 13px; opacity: 0.9; margin-bottom: 12px; }
+        .countdown { display: flex; justify-content: center; gap: 10px; }
+        
+        .time-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+            min-width: 60px;
+        }
+
+        .time-box span { display: block; font-size: 20px; font-weight: 800; line-height: 1.2; }
+        .time-box small { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- Kalkulator Simulasi --- */
+        .calculator-card {
+            background: var(--bg-white);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .calc-label { font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 15px; }
+        .highlight-text { color: var(--primary); font-size: 18px; font-weight: 800; }
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #e2e8f0;
+            outline: none;
+            margin-bottom: 25px;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(217, 119, 6, 0.4);
+        }
+
+        .calc-result { 
+            background: var(--bg-body); 
+            padding: 15px; 
+            border-radius: 8px; 
+            border: 1px solid var(--border); 
+        }
+        
+        .calc-result p { font-size: 13px; color: var(--text-muted); margin-bottom: 5px; }
+        .calc-result h3 { font-size: 24px; font-weight: 800; color: #16a34a; }
+
         /* --- Testimoni --- */
         .testimonial-grid {
             display: flex;
@@ -470,7 +551,7 @@
         </div>
     </section>
 
-    <!-- Katalog Menu (BARU) -->
+    <!-- Katalog Menu -->
     <section class="section" style="background-color: var(--bg-body);">
         <div class="section-header reveal">
             <h2 class="section-title">Katalog Menu</h2>
@@ -576,7 +657,39 @@
         </div>
     </section>
 
-    <!-- Testimoni (BARU) -->
+    <!-- Banner Promo & Countdown -->
+    <div class="promo-banner reveal">
+        <div class="promo-badge">Penawaran Terbatas</div>
+        <h3>Gratis Ongkir & Starter Kit Promosi</h3>
+        <p>Promo hangus pada akhir hari ini dalam:</p>
+        <div class="countdown" id="countdown">
+            <div class="time-box"><span id="hours">00</span><small>Jam</small></div>
+            <div class="time-box"><span id="minutes">00</span><small>Menit</small></div>
+            <div class="time-box"><span id="seconds">00</span><small>Detik</small></div>
+        </div>
+    </div>
+
+    <!-- Kalkulator Keuntungan -->
+    <section class="section">
+        <div class="section-header reveal">
+            <h2 class="section-title">Simulasi Pendapatan</h2>
+            <p class="section-subtitle">Geser tombol di bawah untuk melihat potensi laba Anda (Asumsi margin rata-rata Rp 7.000/paket)</p>
+        </div>
+
+        <div class="calculator-card reveal">
+            <div class="calc-label">Target Jual per Hari: <br><span id="targetVal" class="highlight-text">10 Paket</span></div>
+            
+            <!-- Slider (Range 1 sampai 100 paket per hari) -->
+            <input type="range" id="salesSlider" min="1" max="100" value="10" class="slider">
+            
+            <div class="calc-result">
+                <p>Potensi Laba Bersih per Bulan (30 Hari):</p>
+                <h3 id="profitTotal">Rp 2.100.000</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
     <section class="section">
         <div class="section-header reveal">
             <h2 class="section-title">Kata Mitra Kami</h2>
@@ -658,7 +771,7 @@
         for (var i = 0; i < reveals.length; i++) {
             var windowHeight = window.innerHeight;
             var elementTop = reveals[i].getBoundingClientRect().top;
-            var elementVisible = 50; // Elemen muncul setelah 50px masuk ke viewport
+            var elementVisible = 50; 
 
             if (elementTop < windowHeight - elementVisible) {
                 reveals[i].classList.add("active");
@@ -666,9 +779,58 @@
         }
     }
 
-    // Jalankan saat pertama load dan saat di-scroll
     window.addEventListener("scroll", reveal);
     reveal(); 
+
+    // 3. Script Kalkulator Keuntungan
+    const salesSlider = document.getElementById('salesSlider');
+    const targetVal = document.getElementById('targetVal');
+    const profitTotal = document.getElementById('profitTotal');
+    const avgMargin = 7000; 
+
+    function formatRupiah(number) {
+        return new Intl.NumberFormat('id-ID', { 
+            style: 'currency', 
+            currency: 'IDR', 
+            minimumFractionDigits: 0 
+        }).format(number);
+    }
+
+    salesSlider.addEventListener('input', function() {
+        const dailyTarget = this.value;
+        targetVal.textContent = dailyTarget + " Paket";
+        
+        const monthlyProfit = dailyTarget * 30 * avgMargin;
+        profitTotal.textContent = formatRupiah(monthlyProfit);
+    });
+
+    // 4. Script Countdown Timer 
+    function startCountdown() {
+        function updateTimer() {
+            const now = new Date();
+            const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+            const diff = endOfDay - now;
+
+            if (diff <= 0) {
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000); 
+    }
+    startCountdown();
 </script>
 
 </body>
