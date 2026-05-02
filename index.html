@@ -164,7 +164,7 @@
         .menu-card:hover::after { left: 125%; }
         .menu-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(217, 119, 6, 0.15); border-color: rgba(217, 119, 6, 0.3); }
         .menu-card img { width: 100%; height: auto; object-fit: contain; display: block; transition: transform 0.5s; position: relative; z-index: 1; }
-        .menu-card:hover img { transform: scale(1.05); }
+        .menu-card:hover img { transform: scale(1.03); } /* Efek zoom diperhalus agar teks tetap enak dibaca */
 
         /* --- Steps dgn Hover Nomor --- */
         .steps-container { display: flex; flex-direction: column; gap: 20px; position: relative; }
@@ -252,7 +252,10 @@
             .slider-wrapper { padding: 20px 0; background-color: var(--dark); }
 
             .value-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
-            .menu-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; }
+            
+            /* PERUBAHAN DI SINI: Menu grid diubah jadi 2 kolom agar gambar lebih besar */
+            .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            
             .pricing-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
             
             .steps-container { flex-direction: row; gap: 30px; }
