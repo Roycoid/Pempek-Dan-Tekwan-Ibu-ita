@@ -109,7 +109,8 @@
             position: relative;
             padding: 60px 30px;
             text-align: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            /* Latar belakang hero sekarang memakai gambar produk Anda */
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('Gemini_Generated_Image_npbap9npbap9npba (3).png') center/cover;
             background-attachment: fixed;
             color: white;
         }
@@ -164,7 +165,7 @@
         .menu-card:hover::after { left: 125%; }
         .menu-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(217, 119, 6, 0.15); border-color: rgba(217, 119, 6, 0.3); }
         .menu-card img { width: 100%; height: auto; object-fit: contain; display: block; transition: transform 0.5s; position: relative; z-index: 1; }
-        .menu-card:hover img { transform: scale(1.03); } /* Efek zoom diperhalus agar teks tetap enak dibaca */
+        .menu-card:hover img { transform: scale(1.03); } 
 
         /* --- Steps dgn Hover Nomor --- */
         .steps-container { display: flex; flex-direction: column; gap: 20px; position: relative; }
@@ -252,10 +253,7 @@
             .slider-wrapper { padding: 20px 0; background-color: var(--dark); }
 
             .value-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
-            
-            /* PERUBAHAN DI SINI: Menu grid diubah jadi 2 kolom agar gambar lebih besar */
             .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-            
             .pricing-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
             
             .steps-container { flex-direction: row; gap: 30px; }
@@ -302,9 +300,11 @@
 
     <div class="slider-wrapper reveal">
         <div class="image-slider">
-            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Pempek Kapal Selam Premium">
-            <img src="https://images.unsplash.com/photo-1626804475297-41609ea004eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Varian Pempek Goreng">
-            <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Tekwan Kuah Segar">
+            <!-- Gambar slider sekarang menggunakan gambar produk asli Anda -->
+            <img src="Gemini_Generated_Image_npbap9npbap9npba (4).png" alt="Paket Mix Frozen">
+            <img src="Gemini_Generated_Image_npbap9npbap9npba (3).png" alt="Paket Kapal Selam Combo">
+            <img src="Gemini_Generated_Image_npbap9npbap9npba (1).png" alt="Paket Keluarga Besar">
+            <img src="Gemini_Generated_Image_npbap9npbap9npba.png" alt="Tekwan Kuah Segar">
         </div>
         <div class="swipe-hint">
             <i class="fa-solid fa-arrows-left-right"></i> Geser Foto
