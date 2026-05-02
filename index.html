@@ -144,18 +144,13 @@
         .value-item { display: flex; align-items: flex-start; gap: 15px; transition: transform 0.3s; cursor: default; }
         .value-item:hover { transform: translateX(5px); }
         .value-icon { background: #fef3c7; color: var(--primary); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(217, 119, 6, 0.15); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        
-        /* Animasi Ikon membesar & miring saat card di-hover */
         .value-item:hover .value-icon { transform: scale(1.15) rotate(10deg); background: var(--primary); color: white; }
-        
         .value-text h3 { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
         .value-text p { font-size: 13px; color: var(--text-muted); }
 
         /* --- Menu Cards dgn Shine Effect --- */
         .menu-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         .menu-card { position: relative; background: var(--bg-white); border-radius: 16px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid var(--border); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
-        
-        /* Kilauan Cahaya */
         .menu-card::after {
             content: '';
             position: absolute;
@@ -385,7 +380,7 @@
                 <div class="step-number">02</div>
                 <div>
                     <h4>Pengiriman Produk</h4>
-                    <p>Pesanan diproses H+1. Khusus mitra di Jakarta, nikmati fasilitas pengiriman cepat.</p>
+                    <p>Pesanan diproses H+1. Khusus wilayah <b>Jakarta Barat</b>, nikmati fasilitas <b>Gratis Ongkir</b> dan pengiriman cepat.</p>
                 </div>
             </div>
             <div class="step-item reveal">
@@ -434,7 +429,7 @@
 
     <div class="promo-banner reveal">
         <div class="promo-badge">Penawaran Terbatas</div>
-        <h3>Gratis Ongkir & Starter Kit Promosi</h3>
+        <h3>Gratis Ongkir (Khusus Jakarta Barat) & Starter Kit Promosi</h3>
         <p>Promo hangus pada akhir hari ini dalam:</p>
         <div class="countdown" id="countdown">
             <div class="time-box"><span id="hours">00</span><small>Jam</small></div>
