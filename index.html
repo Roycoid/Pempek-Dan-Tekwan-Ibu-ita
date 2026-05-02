@@ -48,9 +48,19 @@
             transform: translateY(0);
         }
 
+        /* --- PERUBAHAN UNTUK DESKTOP --- */
+        .wrapper {
+            max-width: 1200px; /* Diperlebar untuk menampung tampilan web */
+            margin: 0 auto;
+            background: var(--bg-white);
+            min-height: 100vh;
+            box-shadow: 0 0 40px rgba(0,0,0,0.05);
+            padding-bottom: 80px;
+        }
+
         .navbar {
             background: var(--bg-white);
-            padding: 15px 20px;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -71,20 +81,11 @@
 
         .brand i { color: var(--primary); }
 
-        .wrapper {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--bg-white);
-            min-height: 100vh;
-            box-shadow: 0 0 40px rgba(0,0,0,0.05);
-            padding-bottom: 80px;
-        }
-
         .hero {
             position: relative;
-            padding: 50px 30px;
+            padding: 60px 30px;
             text-align: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
             color: white;
         }
 
@@ -121,7 +122,7 @@
 
         .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         .pricing-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; }
-        .pricing-card:hover { border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .pricing-card:hover { border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); transform: translateY(-5px); }
         .pricing-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
         .pricing-retail { font-size: 12px; color: var(--text-muted); text-decoration: line-through; }
         .pricing-reseller { font-size: 20px; font-weight: 800; color: var(--primary); margin: 5px 0; }
@@ -159,11 +160,48 @@
         details[open] summary::after { transform: rotate(180deg); }
         .faq-content { padding: 0 20px 16px; font-size: 13px; color: var(--text-muted); }
 
-        .sticky-bottom { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 600px; background: var(--bg-white); padding: 15px 25px; border-top: 1px solid var(--border); box-shadow: 0 -4px 20px rgba(0,0,0,0.05); z-index: 100; }
+        .sticky-bottom { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1200px; background: var(--bg-white); padding: 15px 25px; border-top: 1px solid var(--border); box-shadow: 0 -4px 20px rgba(0,0,0,0.05); z-index: 100; }
         .btn-primary { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: var(--dark); color: white; text-decoration: none; padding: 14px; border-radius: 8px; font-weight: 600; font-size: 15px; transition: background 0.3s; }
         .btn-primary:hover { background: var(--primary); }
 
-        @media (max-width: 480px) { .hero h1 { font-size: 24px; } .pricing-grid { grid-template-columns: 1fr; } .section { padding: 30px 20px; } }
+        /* --- MEDIA QUERIES UNTUK TAMPILAN WEB / DESKTOP / TABLET BESAR --- */
+        @media (min-width: 768px) {
+            .hero { padding: 100px 50px; }
+            .hero h1 { font-size: 42px; }
+            .hero p { font-size: 18px; }
+
+            .image-slider img { height: 450px; } /* Foto slider lebih tinggi di web */
+
+            /* Layout Grid berubah menjadi menyamping */
+            .value-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+            .menu-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; }
+            .pricing-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+            
+            .steps-container { flex-direction: row; gap: 30px; }
+            .step-item { flex: 1; flex-direction: column; text-align: center; }
+            
+            .testimonial-grid { flex-direction: row; gap: 20px; }
+            .testimonial-card { flex: 1; }
+
+            /* Menyesuaikan ukuran elemen tertentu agar tidak terlalu raksasa di web */
+            .promo-banner { padding: 40px; margin: 40px; }
+            .countdown .time-box { padding: 15px 25px; }
+            .countdown .time-box span { font-size: 32px; }
+            
+            .calculator-card { max-width: 700px; margin: 0 auto; }
+            
+            /* Penyesuaian spacing / jarak */
+            .section { padding: 60px 50px; }
+            .section-title { font-size: 32px; }
+            .section-subtitle { font-size: 16px; }
+        }
+
+        /* --- TAMPILAN HP KECIL KHUSUS --- */
+        @media (max-width: 480px) { 
+            .hero h1 { font-size: 24px; } 
+            .pricing-grid { grid-template-columns: 1fr; } 
+            .section { padding: 30px 20px; } 
+        }
     </style>
 </head>
 <body>
@@ -182,9 +220,9 @@
 
     <div class="slider-wrapper reveal">
         <div class="image-slider">
-            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pempek Kapal Selam Premium">
-            <img src="https://images.unsplash.com/photo-1626804475297-41609ea004eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Varian Pempek Goreng">
-            <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tekwan Kuah Segar">
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Pempek Kapal Selam Premium">
+            <img src="https://images.unsplash.com/photo-1626804475297-41609ea004eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Varian Pempek Goreng">
+            <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Tekwan Kuah Segar">
         </div>
         <div class="swipe-hint">
             <i class="fa-solid fa-arrows-left-right"></i> Geser Foto
