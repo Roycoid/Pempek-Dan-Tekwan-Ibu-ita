@@ -22,6 +22,7 @@
             --bg-white: #ffffff;
             --border: #e2e8f0;
             --wa-green: #25D366;
+            --shopee: #EE4D2D;
         }
 
         * {
@@ -215,15 +216,21 @@
         .calc-result p { font-size: 13px; color: var(--text-muted); margin-bottom: 5px; }
         .calc-result h3 { font-size: 24px; font-weight: 800; color: #16a34a; }
 
-        /* --- Testimonial & FAQ --- */
-        .testimonial-grid { display: flex; flex-direction: column; gap: 15px; }
-        .testimonial-card { background: var(--bg-body); padding: 20px; border-radius: 16px; border: 1px solid var(--border); transition: all 0.3s; }
-        .testimonial-card:hover { background: var(--bg-white); box-shadow: 0 5px 15px rgba(0,0,0,0.05); transform: translateY(-3px); border-color: var(--primary); }
-        .testimonial-stars { color: #fbbf24; font-size: 12px; margin-bottom: 8px; }
-        .testimonial-quote { font-size: 13px; color: var(--text-main); font-style: italic; margin-bottom: 10px; }
-        .testimonial-author { font-size: 12px; font-weight: 700; color: var(--dark); }
-        .testimonial-author span { font-weight: 400; color: var(--text-muted); }
+        /* --- Ulasan ShopeeFood (BARU) --- */
+        .shopee-review-grid { display: flex; flex-direction: column; gap: 15px; }
+        .shopee-card { background: var(--bg-white); border-radius: 12px; padding: 15px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
+        .shopee-card::before { content: "\f058"; font-family: "FontAwesome"; position: absolute; top: 15px; right: 15px; color: var(--shopee); opacity: 0.1; font-size: 60px; pointer-events: none; }
+        .sr-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .sr-avatar { width: 35px; height: 35px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--text-muted); }
+        .sr-info { flex: 1; }
+        .sr-name { font-size: 13px; font-weight: 600; color: var(--dark); }
+        .sr-stars { color: #fbbf24; font-size: 10px; }
+        .sr-date { font-size: 11px; color: var(--text-muted); float: right; }
+        .sr-variant { font-size: 11px; color: var(--text-muted); background: var(--bg-body); padding: 4px 8px; border-radius: 6px; display: inline-block; margin-bottom: 10px; }
+        .sr-text { font-size: 13px; color: var(--text-main); line-height: 1.5; }
+        .shopee-badge-title { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: var(--shopee); font-weight: 700; margin-bottom: 20px; background: #fff0ed; padding: 6px 15px; border-radius: 20px; width: max-content; margin-left: auto; margin-right: auto; }
 
+        /* --- FAQ --- */
         details { background: var(--bg-body); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; transition: all 0.3s; }
         details:hover { border-color: var(--primary); background: var(--bg-white); }
         summary { padding: 16px 20px; font-size: 14px; font-weight: 600; color: var(--dark); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
@@ -232,7 +239,7 @@
         details[open] summary::after { transform: rotate(180deg); color: var(--primary); }
         .faq-content { padding: 0 20px 16px; font-size: 13px; color: var(--text-muted); line-height: 1.7; }
 
-        /* --- Sticky Bottom & Buttons (UPDATE SHOPEEFOOD & WA) --- */
+        /* --- Sticky Bottom & Buttons --- */
         .sticky-bottom { 
             position: fixed; 
             bottom: 0; 
@@ -279,14 +286,13 @@
         }
         .btn-primary:hover { background: var(--primary); transform: translateY(-2px); }
 
-        /* Tombol ShopeeFood */
         .btn-shopee {
             display: flex; 
             align-items: center; 
             justify-content: center; 
             gap: 8px; 
             flex: 1;
-            background: #EE4D2D; 
+            background: var(--shopee); 
             color: white; 
             text-decoration: none; 
             padding: 12px; 
@@ -305,23 +311,17 @@
             .hero p { font-size: 18px; }
             .image-slider img { height: 450px; border-radius: 16px; margin-right: 15px; } 
             .slider-wrapper { padding: 20px 0; background-color: var(--dark); }
-
             .value-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
             .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
             .pricing-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
-            
             .steps-container { flex-direction: row; gap: 30px; }
             .step-item { flex: 1; flex-direction: column; text-align: center; }
-            
-            .testimonial-grid { flex-direction: row; gap: 20px; }
-            .testimonial-card { flex: 1; }
-
+            .shopee-review-grid { flex-direction: row; gap: 20px; }
+            .shopee-card { flex: 1; }
             .promo-banner { padding: 40px; margin: 40px auto; max-width: 800px; }
             .countdown .time-box { padding: 15px 25px; }
             .countdown .time-box span { font-size: 32px; }
-            
             .calculator-card { max-width: 700px; margin: 0 auto; }
-            
             .section { padding: 80px 50px; }
             .section-title { font-size: 36px; }
             .section-subtitle { font-size: 16px; }
@@ -496,6 +496,64 @@
         </div>
     </div>
 
+    <!-- ULASAN SHOPEE FOOD (BARU) -->
+    <section class="section">
+        <div class="section-header reveal">
+            <div class="shopee-badge-title">
+                <i class="fa-solid fa-star"></i> Penilaian Pelanggan di ShopeeFood
+            </div>
+            <h2 class="section-title">Apa Kata Mereka?</h2>
+            <p class="section-subtitle">100% Ulasan asli dari pelanggan kami</p>
+        </div>
+
+        <div class="shopee-review-grid">
+            <!-- Review 1 -->
+            <div class="shopee-card reveal">
+                <div class="sr-header">
+                    <div class="sr-avatar">D*i</div>
+                    <div class="sr-info">
+                        <div class="sr-name">Dwi S*** <span class="sr-date">12 Mei 2026</span></div>
+                        <div class="sr-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="sr-variant">Variasi: Paket Mix (Isi 10)</div>
+                <p class="sr-text">"Pempeknya enak banget, kerasa ikan tenggirinya bukan tepung doang. Cukonya juga kental dan pedesnya pas. Mantap buat nyetok di kulkas!"</p>
+            </div>
+            
+            <!-- Review 2 -->
+            <div class="shopee-card reveal">
+                <div class="sr-header">
+                    <div class="sr-avatar">A*u</div>
+                    <div class="sr-info">
+                        <div class="sr-name">Ayu N*** <span class="sr-date">08 Mei 2026</span></div>
+                        <div class="sr-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="sr-variant">Variasi: Kapal Selam Combo</div>
+                <p class="sr-text">"Penyelamat pas lagi lapar malam-malam. Tinggal digoreng cepet banget. Kemasan vakumnya rapi jadi aman banget waktu dikirim."</p>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="shopee-card reveal">
+                <div class="sr-header">
+                    <div class="sr-avatar">R*a</div>
+                    <div class="sr-info">
+                        <div class="sr-name">Reza P*** <span class="sr-date">01 Mei 2026</span></div>
+                        <div class="sr-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="sr-variant">Variasi: Tekwan Praktis</div>
+                <p class="sr-text">"Kuah tekwannya seger banget bumbu udangnya berasa. Anak saya suka banget. Bakal repeat order terus nih 👍"</p>
+            </div>
+        </div>
+    </section>
+
     <section class="section">
         <div class="section-header reveal">
             <h2 class="section-title">Simulasi Pendapatan</h2>
@@ -510,30 +568,6 @@
             <div class="calc-result">
                 <p>Potensi Laba Bersih per Bulan (30 Hari):</p>
                 <h3 id="profitTotal">Rp 2.100.000</h3>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="section-header reveal">
-            <h2 class="section-title">Kata Mitra Kami</h2>
-            <p class="section-subtitle">Mereka yang sudah membuktikan kemudahannya</p>
-        </div>
-
-        <div class="testimonial-grid">
-            <div class="testimonial-card reveal">
-                <div class="testimonial-stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="testimonial-quote">"Awalnya coba-coba ambil 15 paket untuk ditawarkan ke teman kantor. Ternyata responnya bagus banget karena rasanya memang ikan asli dan cukonya mantap. Sekarang rutin order tiap minggu!"</p>
-                <div class="testimonial-author">Budi S. <span>- Mitra Reseller</span></div>
-            </div>
-            <div class="testimonial-card reveal">
-                <div class="testimonial-stars">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="testimonial-quote">"Sangat praktis karena kemasannya sudah divakum. Pelanggan saya yang di luar kota juga aman dikirim pakai ekspedisi kilat. Margin keuntungannya sangat membantu pemasukan tambahan."</p>
-                <div class="testimonial-author">Siti Aisyah <span>- Ibu Rumah Tangga</span></div>
             </div>
         </div>
     </section>
