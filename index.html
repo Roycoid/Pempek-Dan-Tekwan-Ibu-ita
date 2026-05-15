@@ -516,12 +516,12 @@
         <p style="font-size: 13px; margin-bottom: 15px; color: var(--text-muted);">Silakan selesaikan pembayaran untuk aktivasi kemitraan Anda.</p>
         
         <div class="payment-info">
-            <p>Atas Nama: <strong>PEMPEK IBU ITA</strong></p>
+            <p>Atas Nama: <strong>JASA PAKAR (Pempek Ibu Ita)</strong></p>
             <p>Paket: <strong id="checkoutPaket">...</strong></p>
             <p>Metode: <strong>QRIS (All E-Wallet)</strong></p>
         </div>
 
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=PEMPEK_IBU_ITA_PAYMENT" alt="QRIS" class="qris-img">
+        <img src="WhatsApp%20Image%202026-05-15%20at%2018.08.30.jpeg" alt="QRIS Pempek Ibu Ita" class="qris-img">
         
         <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px; margin-top: 10px;">*Screenshot QRIS di atas lalu scan di aplikasi DANA, OVO, GoPay atau Mobile Banking Anda.</p>
         
@@ -607,7 +607,7 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    let currentOrderId = null; // Menyimpan ID pesanan yang sedang aktif
+    let currentOrderId = null; 
 
     // Step 1: Simpan data (UNPAID) lalu buka Checkout QRIS
     window.prosesKeCheckout = async function() {
