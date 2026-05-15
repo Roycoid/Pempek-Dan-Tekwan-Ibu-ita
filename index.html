@@ -332,7 +332,7 @@
                 <div class="step-number">02</div>
                 <div>
                     <h4>Checkout & Pembayaran</h4>
-                    <p>Selesaikan pembayaran via QRIS secara otomatis dan pesanan langsung diproses.</p>
+                    <p>Selesaikan pembayaran via QRIS secara otomatis atau pilih bayar di tempat (COD).</p>
                 </div>
             </div>
             <div class="step-item reveal">
@@ -502,9 +502,14 @@
             <option value="Agen (Min. 50 Paket)">Agen (Min. 50 Paket) - Bonus Spanduk</option>
             <option value="Distributor (Min. 150 Paket)">Distributor (Min. 150 Paket) - Termurah</option>
         </select>
+        <select id="waMetode" class="form-input" required style="border-color: var(--primary);">
+            <option value="" disabled selected>Pilih Metode Pembayaran...</option>
+            <option value="QRIS / Transfer (Otomatis)">Bayar via QRIS / E-Wallet</option>
+            <option value="Bayar Tunai (COD / Di Toko)">Bayar Tunai (COD / Di Toko)</option>
+        </select>
         
         <button onclick="prosesKeCheckout()" class="btn-primary" style="width: 100%;">
-            Lanjut ke Pembayaran <i class="fa-solid fa-arrow-right"></i>
+            Proses Pesanan <i class="fa-solid fa-arrow-right"></i>
         </button>
     </div>
 </div>
@@ -592,7 +597,7 @@
     window.openModal = function(id) { document.getElementById(id).classList.add('active'); }
     window.closeModal = function(id) { document.getElementById(id).classList.remove('active'); }
 
-    // --- 3. FIREBASE INTEGRATION ---
+    // --- 3. FIREBASE INTEGRATION & LOGIKA COD ---
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
@@ -609,13 +614,14 @@
     const db = getFirestore(app);
     let currentOrderId = null; 
 
-    // Step 1: Simpan data (UNPAID) lalu buka Checkout QRIS
+    // Step 1: Simpan data dan jalankan percabangan metode
     window.prosesKeCheckout = async function() {
         let nama = document.getElementById('waNama').value;
         let kota = document.getElementById('waKota').value;
         let paket = document.getElementById('waPaket').value;
+        let metode = document.getElementById('waMetode').value;
         
-        if(!nama || !kota || !paket) { alert('Mohon lengkapi semua data ya, Kak!'); return; }
+        if(!nama || !kota || !paket || !metode) { alert('Mohon lengkapi semua pilihan datanya ya, Kak!'); return; }
 
         const btn = document.querySelector('#mitraModal .btn-primary');
         const originalText = btn.innerHTML;
@@ -623,15 +629,29 @@
         btn.disabled = true;
 
         try {
+            // Tentukan status awal berdasarkan metode
+            let statusAwal = metode.includes("Tunai") ? "COD" : "UNPAID";
+            
             const docRef = await addDoc(collection(db, "calon_mitra"), {
-                nama: nama, domisili: kota, paket: paket, status: "UNPAID", waktuDaftar: serverTimestamp()
+                nama: nama, domisili: kota, paket: paket, metode: metode, status: statusAwal, waktuDaftar: serverTimestamp()
             });
             currentOrderId = docRef.id;
 
-            // Pindah ke Modal Checkout
-            document.getElementById('checkoutPaket').innerText = paket;
-            window.closeModal('mitraModal');
-            window.openModal('checkoutModal');
+            // LOGIKA PERCABANGAN:
+            if (metode.includes("Tunai")) {
+                // JIKA PILIH TUNAI: Langsung lemparkan ke WA, lewati QRIS
+                let waNumber = "6289637384530"; 
+                let textMessage = `Halo Tim Ibu Ita! 🐟\n\nSaya ingin memesan paket kemitraan.\n\n👤 *Nama:* ${nama}\n📍 *Domisili:* ${kota}\n📦 *Paket:* ${paket}\n💳 *Metode:* Bayar Tunai (COD / Di Toko)\n\nMohon info kapan pesanan saya bisa dikirim/diambil ya.`;
+                
+                window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(textMessage)}`, '_blank');
+                window.closeModal('mitraModal');
+            } else {
+                // JIKA PILIH QRIS: Buka Modal Pembayaran
+                document.getElementById('checkoutPaket').innerText = paket;
+                window.closeModal('mitraModal');
+                window.openModal('checkoutModal');
+            }
+
         } catch (e) {
             alert("Terjadi kesalahan sistem, silakan coba lagi.");
         } finally {
@@ -640,7 +660,7 @@
         }
     }
 
-    // Step 2: Konfirmasi bayar, update status (PAID), lalu ke WA
+    // Step 2: Khusus untuk yang pilih QRIS dan tekan "Saya Sudah Bayar"
     window.konfirmasiPembayaran = async function() {
         if(!currentOrderId) return;
         
@@ -656,7 +676,7 @@
             let nama = document.getElementById('waNama').value;
             let paket = document.getElementById('waPaket').value;
             let waNumber = "6289637384530"; 
-            let textMessage = `Halo Tim Ibu Ita! 🐟\n\nSAYA SUDAH MEMBAYAR untuk aktivasi kemitraan.\n\n👤 *Nama:* ${nama}\n📦 *Paket:* ${paket}\n✅ *Status Sistem:* PAID (QRIS Verified)\n\nMohon dicek dan segera diproses pengirimannya.`;
+            let textMessage = `Halo Tim Ibu Ita! 🐟\n\nSAYA SUDAH MEMBAYAR untuk pesanan kemitraan.\n\n👤 *Nama:* ${nama}\n📦 *Paket:* ${paket}\n✅ *Status Sistem:* PAID (QRIS Verified)\n\nMohon dicek mutasinya dan segera diproses pengirimannya.`;
             
             window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(textMessage)}`, '_blank');
             window.closeModal('checkoutModal');
