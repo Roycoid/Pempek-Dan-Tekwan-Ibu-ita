@@ -6,9 +6,7 @@
     <title>Kemitraan & Reseller | Pempek Ibu Ita</title>
     <meta name="description" content="Bergabunglah menjadi mitra resmi Pempek Ibu Ita. Bisnis kuliner praktis, higienis, dengan sistem yang transparan dan menguntungkan.">
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -249,10 +247,8 @@
 </head>
 <body>
 
-<!-- Indikator Scroll -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- FOMO Toast -->
 <div id="fomoToast" class="fomo-toast">
     <div class="fomo-icon"><i class="fa-solid fa-check"></i></div>
     <div class="fomo-text">
@@ -316,7 +312,6 @@
         </div>
     </section>
 
-    <!-- Katalog Paket Frozen -->
     <section class="section" style="background-color: var(--bg-body);">
         <div class="section-header reveal">
             <h2 class="section-title">Katalog Paket Frozen</h2>
@@ -415,7 +410,6 @@
         </div>
     </div>
 
-    <!-- ULASAN SHOPEE FOOD -->
     <section class="section">
         <div class="section-header reveal">
             <div class="shopee-badge-title">
@@ -507,7 +501,6 @@
             <i class="fa-solid fa-motorcycle" style="font-size: 18px;"></i>
             ShopeeFood
         </a>
-        <!-- Diubah agar memunculkan Pop-up -->
         <button onclick="openModal()" class="btn-primary">
             <i class="fa-brands fa-whatsapp" style="font-size: 18px; color: var(--wa-green);"></i>
             Kemitraan
@@ -515,7 +508,6 @@
     </div>
 </div>
 
-<!-- Modal Form Pendaftaran -->
 <div id="mitraModal" class="modal-overlay">
     <div class="modal-box">
         <span class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></span>
@@ -537,7 +529,7 @@
     </div>
 </div>
 
-<script>
+<script type="module">
     // --- Scroll Progress Bar ---
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -621,31 +613,12 @@
     }
     startCountdown();
 
-    // --- Modal Logic ---
-    function openModal() {
+    // --- Modal Logic (Export ke Global scope) ---
+    window.openModal = function() {
         document.getElementById('mitraModal').classList.add('active');
     }
-    function closeModal() {
+    window.closeModal = function() {
         document.getElementById('mitraModal').classList.remove('active');
-    }
-
-    // --- WhatsApp Integration ---
-    function kirimKeWA() {
-        let nama = document.getElementById('waNama').value;
-        let kota = document.getElementById('waKota').value;
-        let paket = document.getElementById('waPaket').value;
-        
-        if(!nama || !kota || !paket) { 
-            alert('Mohon lengkapi semua data ya, Kak!'); 
-            return; 
-        }
-        
-        let waNumber = "6289637384530"; // Ganti dengan nomor WhatsApp aslimu
-        let textMessage = `Halo Tim Ibu Ita! 🐟\n\nSaya tertarik bergabung menjadi Mitra Reseller.\n\n👤 *Nama:* ${nama}\n📍 *Domisili:* ${kota}\n📦 *Rencana Order:* ${paket}\n\nMohon info selengkapnya ya. Terima kasih!`;
-        
-        let waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(textMessage)}`;
-        window.open(waUrl, '_blank');
-        closeModal();
     }
 
     // --- FOMO Notification Logic ---
@@ -673,6 +646,63 @@
 
     setInterval(showFomo, Math.floor(Math.random() * (20000 - 12000 + 1) + 12000));
     setTimeout(showFomo, 3000);
+
+    // ==========================================
+    // --- FIREBASE INTEGRATION ---
+    // ==========================================
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZONkYX2sxBaCsIvZU6Nmd9r7b6KYgxHk",
+      authDomain: "pempek-dan-tekwan-ibu-ita.firebaseapp.com",
+      projectId: "pempek-dan-tekwan-ibu-ita",
+      storageBucket: "pempek-dan-tekwan-ibu-ita.firebasestorage.app",
+      messagingSenderId: "680562252929",
+      appId: "1:680562252929:web:09de957059d0241b77c180",
+      measurementId: "G-C7J7HMQC3M"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Fungsi kirim ke WA dan simpan ke database
+    window.kirimKeWA = async function() {
+        let nama = document.getElementById('waNama').value;
+        let kota = document.getElementById('waKota').value;
+        let paket = document.getElementById('waPaket').value;
+        
+        if(!nama || !kota || !paket) { 
+            alert('Mohon lengkapi semua data ya, Kak!'); 
+            return; 
+        }
+
+        const btn = document.querySelector('#mitraModal .btn-primary');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
+        btn.disabled = true;
+
+        try {
+            await addDoc(collection(db, "calon_mitra"), {
+                nama: nama,
+                domisili: kota,
+                paket: paket,
+                waktuDaftar: serverTimestamp()
+            });
+
+            let waNumber = "6289637384530"; 
+            let textMessage = `Halo Tim Ibu Ita! 🐟\n\nSaya tertarik bergabung menjadi Mitra Reseller.\n\n👤 *Nama:* ${nama}\n📍 *Domisili:* ${kota}\n📦 *Rencana Order:* ${paket}\n\nMohon info selengkapnya ya.`;
+            
+            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(textMessage)}`, '_blank');
+            window.closeModal();
+        } catch (e) {
+            console.error("Error menambah dokumen: ", e);
+            alert("Terjadi kesalahan sistem, silakan coba lagi.");
+        } finally {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }
+    }
 </script>
 
 </body>
