@@ -11,33 +11,69 @@
     
     <style>
         :root {
-            --primary: #d97706; --primary-hover: #b45309; --dark: #0f172a; --text-main: #334155;
-            --text-muted: #64748b; --bg-body: #f8fafc; --bg-white: #ffffff; --border: #e2e8f0;
-            --wa-green: #25D366; --shopee: #EE4D2D; --grosir: #059669;
+            --primary: #d97706;
+            --primary-hover: #b45309;
+            --dark: #0f172a;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e2e8f0;
+            --wa-green: #25D366;
+            --shopee: #EE4D2D;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; -webkit-font-smoothing: antialiased; padding-bottom: 80px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-        .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--primary); z-index: 9999; width: 0%; transition: width 0.1s ease-out; box-shadow: 0 0 10px rgba(217, 119, 6, 0.8); }
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Scroll Progress Bar --- */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; height: 4px; background: var(--primary);
+            z-index: 9999; width: 0%; transition: width 0.1s ease-out; box-shadow: 0 0 10px rgba(217, 119, 6, 0.8);
+        }
+
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .wrapper { max-width: 1200px; margin: 0 auto; background: var(--bg-white); min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.08); }
 
-        .navbar { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(226, 232, 240, 0.6); position: sticky; top: 0; z-index: 50; transition: all 0.3s ease; }
+        .wrapper {
+            max-width: 1200px; margin: 0 auto; background: var(--bg-white);
+            min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.08); padding-bottom: 80px;
+        }
+
+        /* --- Navbar & Logo Animasi --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6); position: sticky; top: 0; z-index: 50; transition: all 0.3s ease;
+        }
         .brand { font-weight: 800; font-size: 18px; color: var(--dark); display: flex; align-items: center; gap: 8px; transition: transform 0.3s; }
         .brand:hover { transform: scale(1.05); }
         @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
         .brand i { color: var(--primary); animation: floatIcon 3s ease-in-out infinite; }
 
-        .hero { position: relative; padding: 60px 30px; text-align: center; background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('Gemini_Generated_Image_npbap9npbap9npba (3).png') center/cover; background-attachment: fixed; color: white; }
+        /* --- Efek Parallax & Hero --- */
+        .hero {
+            position: relative; padding: 60px 30px; text-align: center;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('Gemini_Generated_Image_npbap9npbap9npba (3).png') center/cover;
+            background-attachment: fixed; color: white;
+        }
         .hero h1 { font-size: 28px; font-weight: 800; line-height: 1.3; margin-bottom: 15px; }
         .hero h1 span { color: var(--primary); text-shadow: 0 0 20px rgba(217, 119, 6, 0.4); }
-        .hero p { font-size: 14px; color: #cbd5e1; margin-bottom: 20px; font-weight: 400; }
-        
-        .btn-shopee-hero { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--shopee); color: white; text-decoration: none; padding: 12px 25px; border-radius: 25px; font-weight: 700; font-size: 14px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(238, 77, 45, 0.4); border: 1px solid #ff6c52; }
-        .btn-shopee-hero:hover { background: #d74226; transform: translateY(-3px); }
+        .hero p { font-size: 14px; color: #cbd5e1; margin-bottom: 0; font-weight: 400; }
 
+        /* --- Slider --- */
         .slider-wrapper { position: relative; width: 100%; background-color: var(--dark); overflow: hidden; }
         .image-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
         .image-slider::-webkit-scrollbar { display: none; }
@@ -45,45 +81,76 @@
         .swipe-hint { position: absolute; bottom: 15px; right: 15px; background: rgba(0, 0, 0, 0.6); color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.2); animation: bounceX 2s infinite; pointer-events: none; }
         @keyframes bounceX { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-5px); } }
 
+        /* --- Section Umum --- */
         .section { padding: 40px 30px; border-bottom: 1px solid var(--border); }
         .section-header { text-align: center; margin-bottom: 30px; }
         .section-title { font-size: 22px; font-weight: 700; color: var(--dark); }
         .section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 5px; }
 
+        /* --- Value Grid & Icon Animation --- */
         .value-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         .value-item { display: flex; align-items: flex-start; gap: 15px; transition: transform 0.3s; cursor: default; }
         .value-item:hover { transform: translateX(5px); }
-        .value-icon { background: #fef3c7; color: var(--primary); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(217, 119, 6, 0.15); transition: all 0.4s; }
+        .value-icon { background: #fef3c7; color: var(--primary); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(217, 119, 6, 0.15); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .value-item:hover .value-icon { transform: scale(1.15) rotate(10deg); background: var(--primary); color: white; }
         .value-text h3 { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
         .value-text p { font-size: 13px; color: var(--text-muted); }
 
-        .info-grosir { background: #ecfdf5; border: 1px solid #10b981; margin-bottom: 20px; padding: 15px; border-radius: 12px; text-align: center; color: #065f46; }
-        .info-grosir h3 { font-size: 14px; font-weight: 800; margin-bottom: 5px; }
-        .info-grosir p { font-size: 12px; }
-        
-        .menu-container { display: flex; flex-direction: column; gap: 12px; }
-        .menu-item { background: var(--bg-white); border-radius: 12px; padding: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border); box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .menu-info { flex: 1; padding-right: 10px; }
-        .menu-name { font-size: 14px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
-        .menu-desc { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; line-height: 1.4; }
-        .price-box { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
-        .coret { text-decoration: line-through; color: #94a3b8; font-size: 11px; }
-        .menu-price { font-size: 15px; font-weight: 800; color: var(--grosir); }
-        
-        .qty-control { display: flex; align-items: center; gap: 10px; background: var(--bg-body); padding: 5px; border-radius: 20px; border: 1px solid var(--border); }
-        .qty-btn { width: 28px; height: 28px; border-radius: 50%; border: none; background: var(--bg-white); color: var(--dark); font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .qty-btn:active { transform: scale(0.95); }
-        .qty-value { font-size: 14px; font-weight: 700; width: 20px; text-align: center; }
+        /* --- Menu Cards dgn Shine Effect --- */
+        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .menu-card { position: relative; background: var(--bg-white); border-radius: 16px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid var(--border); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+        .menu-card::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%); transform: skewX(-25deg); transition: all 0.75s ease; z-index: 10; }
+        .menu-card:hover::after { left: 125%; }
+        .menu-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(217, 119, 6, 0.15); border-color: rgba(217, 119, 6, 0.3); }
+        .menu-card img { width: 100%; height: auto; object-fit: contain; display: block; transition: transform 0.5s; position: relative; z-index: 1; }
+        .menu-card:hover img { transform: scale(1.03); } 
 
+        /* --- Steps dgn Hover Nomor --- */
         .steps-container { display: flex; flex-direction: column; gap: 20px; position: relative; }
-        .step-item { background: var(--bg-white); padding: 20px; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 15px; transition: all 0.3s; }
+        .step-item { background: var(--bg-white); padding: 20px; border-radius: 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 15px; transition: all 0.3s; cursor: default; }
         .step-item:hover { border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.05); transform: translateY(-3px); }
         .step-number { font-size: 24px; font-weight: 800; color: var(--primary); opacity: 0.8; transition: all 0.3s; }
         .step-item:hover .step-number { opacity: 1; transform: scale(1.2) rotate(-5deg); text-shadow: 2px 2px 5px rgba(217, 119, 6, 0.3); }
         .step-item h4 { font-size: 15px; color: var(--dark); }
         .step-item p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 
+        /* --- Pricing & Promo --- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .pricing-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: 16px; padding: 20px; text-align: center; transition: all 0.4s; position: relative; overflow: hidden; cursor: pointer; }
+        .pricing-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: 0.5s; }
+        .pricing-card:hover::before { left: 100%; }
+        .pricing-card:hover { border-color: var(--primary); box-shadow: 0 15px 25px rgba(217, 119, 6, 0.1); transform: translateY(-8px); }
+        .pricing-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+        .pricing-retail { font-size: 12px; color: var(--text-muted); text-decoration: line-through; }
+        .pricing-reseller { font-size: 20px; font-weight: 800; color: var(--primary); margin: 5px 0; transition: color 0.3s; }
+        .pricing-card:hover .pricing-reseller { color: var(--dark); }
+        .pricing-margin { font-size: 11px; font-weight: 600; color: #16a34a; background: #dcfce7; padding: 3px 8px; border-radius: 20px; display: inline-block; }
+
+        .promo-banner { background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; text-align: center; padding: 20px; margin: 20px; border-radius: 16px; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3); position: relative; overflow: hidden; }
+        .promo-badge { background: #fde047; color: #b45309; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; animation: pulseBadge 2s infinite; }
+        @keyframes pulseBadge { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .promo-banner h3 { font-size: 16px; margin-bottom: 5px; }
+        .promo-banner p { font-size: 13px; opacity: 0.9; margin-bottom: 12px; }
+        .countdown { display: flex; justify-content: center; gap: 10px; }
+        .time-box { background: rgba(255, 255, 255, 0.2); padding: 8px 12px; border-radius: 10px; backdrop-filter: blur(5px); min-width: 60px; border: 1px solid rgba(255,255,255,0.1); }
+        .time-box span { display: block; font-size: 20px; font-weight: 800; line-height: 1.2; }
+        .time-box small { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- Ulasan ShopeeFood --- */
+        .shopee-review-grid { display: flex; flex-direction: column; gap: 15px; }
+        .shopee-card { background: var(--bg-white); border-radius: 12px; padding: 15px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
+        .shopee-card::before { content: "\f058"; font-family: "FontAwesome"; position: absolute; top: 15px; right: 15px; color: var(--shopee); opacity: 0.1; font-size: 60px; pointer-events: none; }
+        .sr-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .sr-avatar { width: 35px; height: 35px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--text-muted); }
+        .sr-info { flex: 1; }
+        .sr-name { font-size: 13px; font-weight: 600; color: var(--dark); }
+        .sr-stars { color: #fbbf24; font-size: 10px; }
+        .sr-date { font-size: 11px; color: var(--text-muted); float: right; }
+        .sr-variant { font-size: 11px; color: var(--text-muted); background: var(--bg-body); padding: 4px 8px; border-radius: 6px; display: inline-block; margin-bottom: 10px; }
+        .sr-text { font-size: 13px; color: var(--text-main); line-height: 1.5; }
+        .shopee-badge-title { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: var(--shopee); font-weight: 700; margin-bottom: 20px; background: #fff0ed; padding: 6px 15px; border-radius: 20px; width: max-content; margin-left: auto; margin-right: auto; }
+
+        /* --- Calculator --- */
         .calculator-card { background: var(--bg-white); border: 2px solid var(--primary); border-radius: 16px; padding: 25px 20px; text-align: center; box-shadow: 0 10px 30px rgba(217, 119, 6, 0.08); transition: transform 0.3s; }
         .calculator-card:hover { transform: scale(1.02); }
         .calc-label { font-size: 15px; font-weight: 600; color: var(--dark); margin-bottom: 15px; }
@@ -92,56 +159,76 @@
         .slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--primary); cursor: pointer; box-shadow: 0 0 15px rgba(217, 119, 6, 0.5); transition: transform 0.2s; }
         .slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
         .calc-result { background: var(--bg-body); padding: 15px; border-radius: 12px; border: 1px solid var(--border); transition: background 0.3s; }
+        .calculator-card:hover .calc-result { background: #fef3c7; border-color: rgba(217, 119, 6, 0.2); }
         .calc-result p { font-size: 13px; color: var(--text-muted); margin-bottom: 5px; }
         .calc-result h3 { font-size: 24px; font-weight: 800; color: #16a34a; }
 
-        .shopee-review-grid { display: flex; flex-direction: column; gap: 15px; }
-        .shopee-card { background: var(--bg-white); border-radius: 12px; padding: 15px; border: 1px solid var(--border); position: relative; overflow: hidden; }
-        .shopee-card::before { content: "\f058"; font-family: "FontAwesome"; position: absolute; top: 15px; right: 15px; color: var(--shopee); opacity: 0.1; font-size: 60px; }
-        .sr-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .sr-avatar { width: 35px; height: 35px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--text-muted); }
-        .sr-info { flex: 1; }
-        .sr-name { font-size: 13px; font-weight: 600; color: var(--dark); }
-        .sr-stars { color: #fbbf24; font-size: 10px; }
-        .sr-date { font-size: 11px; color: var(--text-muted); float: right; }
-        .sr-text { font-size: 13px; color: var(--text-main); line-height: 1.5; }
-        .shopee-badge-title { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: var(--shopee); font-weight: 700; margin-bottom: 20px; background: #fff0ed; padding: 6px 15px; border-radius: 20px; width: max-content; margin-left: auto; margin-right: auto; }
-
+        /* --- FAQ --- */
         details { background: var(--bg-body); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; transition: all 0.3s; }
         details:hover { border-color: var(--primary); background: var(--bg-white); }
         summary { padding: 16px 20px; font-size: 14px; font-weight: 600; color: var(--dark); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
         summary::-webkit-details-marker { display: none; }
-        summary::after { content: '\f078'; font-family: 'FontAwesome'; color: var(--text-muted); font-size: 12px; transition: transform 0.3s; }
+        summary::after { content: '\f078'; font-family: 'FontAwesome'; color: var(--text-muted); font-size: 12px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         details[open] summary::after { transform: rotate(180deg); color: var(--primary); }
         .faq-content { padding: 0 20px 16px; font-size: 13px; color: var(--text-muted); line-height: 1.7; }
 
-        .shopee-float { position: fixed; right: 20px; bottom: 90px; width: 55px; height: 55px; background: var(--shopee); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 5px 15px rgba(238, 77, 45, 0.4); z-index: 99; transition: all 0.3s; border: 2px solid white; text-decoration: none; }
-        .shopee-float:hover { transform: scale(1.1) rotate(-10deg); }
+        /* --- Sticky Bottom & Buttons --- */
+        .sticky-bottom { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1200px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 15px 25px; border-top: 1px solid rgba(226, 232, 240, 0.6); box-shadow: 0 -10px 30px rgba(0,0,0,0.05); z-index: 100; }
+        .button-group { display: flex; gap: 15px; width: 100%; }
+        
+        @keyframes pulseWA { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        .btn-primary { display: flex; align-items: center; justify-content: center; gap: 8px; flex: 1; background: var(--dark); color: white; text-decoration: none; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 14px; transition: all 0.3s; animation: pulseWA 2s infinite; border: none; cursor: pointer; }
+        .btn-primary:hover { background: var(--primary); transform: translateY(-2px); }
 
-        .sticky-bottom { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 1200px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 15px 25px; border-top: 1px solid rgba(226, 232, 240, 0.6); box-shadow: 0 -10px 30px rgba(0,0,0,0.05); z-index: 100; display: flex; justify-content: space-between; align-items: center; }
-        .cart-total h4 { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-        .cart-total h2 { font-size: 18px; color: var(--dark); font-weight: 800; }
-        .btn-checkout { display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.3s; }
-        .btn-checkout:disabled { background: #cbd5e1; cursor: not-allowed; }
+        .btn-shopee { display: flex; align-items: center; justify-content: center; gap: 8px; flex: 1; background: var(--shopee); color: white; text-decoration: none; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 14px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(238, 77, 45, 0.3); }
+        .btn-shopee:hover { background: #d74226; transform: translateY(-2px); }
 
+        /* --- Modal Lead & Checkout --- */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay.active { display: flex; opacity: 1; }
-        .modal-box { background: var(--bg-white); width: 90%; max-width: 400px; padding: 30px; border-radius: 20px; position: relative; transform: translateY(50px); transition: transform 0.3s ease; max-height: 90vh; overflow-y: auto; }
+        .modal-box { background: var(--bg-white); width: 90%; max-width: 400px; padding: 30px; border-radius: 20px; position: relative; transform: translateY(50px); transition: transform 0.3s ease; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
         .modal-overlay.active .modal-box { transform: translateY(0); }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 20px; color: var(--text-muted); cursor: pointer; }
-        .form-input { width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 1px solid var(--border); border-radius: 10px; font-size: 14px; outline: none; }
+        .form-input { width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 1px solid var(--border); border-radius: 10px; font-size: 14px; outline: none; transition: border-color 0.3s; }
         .form-input:focus { border-color: var(--primary); }
-        .qris-img { width: 220px; margin: 15px auto; display: block; border: 4px solid #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .payment-info { background: #f8fafc; padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid var(--primary); }
 
+        /* Checkout Styles */
+        .checkout-box { text-align: center; }
+        .qris-img { width: 220px; margin: 15px auto; display: block; border: 4px solid #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .payment-info { background: #f8fafc; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: left; border-left: 4px solid var(--primary); }
+        .payment-info p { font-size: 13px; color: var(--text-muted); margin-bottom: 5px; }
+        .payment-info strong { color: var(--dark); font-size: 15px; }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (min-width: 768px) {
-            .hero { padding: 100px 50px; } .hero h1 { font-size: 48px; }
+            .hero { padding: 100px 50px; background-attachment: fixed; } 
+            .hero h1 { font-size: 48px; }
+            .hero p { font-size: 18px; }
+            .image-slider img { height: 450px; border-radius: 16px; margin-right: 15px; } 
+            .slider-wrapper { padding: 20px 0; background-color: var(--dark); }
             .value-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
-            .menu-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-            .steps-container { flex-direction: row; gap: 30px; } .step-item { flex: 1; flex-direction: column; text-align: center; }
-            .shopee-review-grid { flex-direction: row; gap: 20px; } .shopee-card { flex: 1; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .pricing-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+            .steps-container { flex-direction: row; gap: 30px; }
+            .step-item { flex: 1; flex-direction: column; text-align: center; }
+            .shopee-review-grid { flex-direction: row; gap: 20px; }
+            .shopee-card { flex: 1; }
+            .promo-banner { padding: 40px; margin: 40px auto; max-width: 800px; }
+            .countdown .time-box { padding: 15px 25px; }
+            .countdown .time-box span { font-size: 32px; }
             .calculator-card { max-width: 700px; margin: 0 auto; }
             .section { padding: 80px 50px; }
+            .section-title { font-size: 36px; }
+            .section-subtitle { font-size: 16px; }
+        }
+
+        @media (max-width: 480px) { 
+            .hero h1 { font-size: 24px; } 
+            .pricing-grid { grid-template-columns: 1fr; } 
+            .section { padding: 40px 20px; } 
+            .hero { background-attachment: scroll; } 
+            .button-group { gap: 10px; }
+            .btn-primary, .btn-shopee { font-size: 12px; padding: 10px; }
         }
     </style>
 </head>
@@ -150,6 +237,7 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <div class="wrapper">
+    
     <nav class="navbar" id="navbar">
         <div class="brand"><i class="fa-solid fa-bowl-food"></i> Pempek Ibu Ita</div>
         <div style="font-size: 12px; font-weight: 600; color: var(--text-muted); background: var(--bg-body); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border);">Mitra Resmi</div>
@@ -158,19 +246,18 @@
     <header class="hero">
         <h1 class="reveal">Peluang Bisnis <span>F&B Praktis</span> Margin Tinggi.</h1>
         <p class="reveal">Distribusi produk frozen food premium dengan sistem kemitraan yang transparan dan menguntungkan.</p>
-        
-        <a href="https://shopee.co.id/" class="btn-shopee-hero reveal" target="_blank">
-            <i class="fa-solid fa-shop"></i> Beli Eceran di Shopee Toko
-        </a>
     </header>
 
     <div class="slider-wrapper reveal">
         <div class="image-slider">
-            <img src="Gemini_Generated_Image_npbap9npbap9npba (4).png" alt="Paket Frozen Campur Isi 5">
-            <img src="Gemini_Generated_Image_npbap9npbap9npba (3).png" alt="Frozen Kapal Selam Besar">
-            <img src="Gemini_Generated_Image_npbap9npbap9npba (1).png" alt="Kemasan Vakum Higienis">
+            <img src="Gemini_Generated_Image_npbap9npbap9npba (4).png" alt="Paket Mix Frozen">
+            <img src="Gemini_Generated_Image_npbap9npbap9npba (3).png" alt="Paket Kapal Selam Combo">
+            <img src="Gemini_Generated_Image_npbap9npbap9npba (1).png" alt="Paket Keluarga Besar">
+            <img src="Gemini_Generated_Image_npbap9npbap9npba.png" alt="Tekwan Kuah Segar">
         </div>
-        <div class="swipe-hint"><i class="fa-solid fa-arrows-left-right"></i> Geser Foto</div>
+        <div class="swipe-hint">
+            <i class="fa-solid fa-arrows-left-right"></i> Geser Foto
+        </div>
     </div>
 
     <section class="section">
@@ -178,35 +265,52 @@
             <h2 class="section-title">Standar Mutu Kami</h2>
             <p class="section-subtitle">Mengapa produk kami mudah dipasarkan</p>
         </div>
+        
         <div class="value-grid">
             <div class="value-item reveal">
                 <div class="value-icon"><i class="fa-solid fa-medal"></i></div>
-                <div class="value-text"><h3>Kualitas Premium</h3><p>Diproduksi menggunakan 100% daging ikan tenggiri asli tanpa campuran bahan pengawet buatan.</p></div>
+                <div class="value-text">
+                    <h3>Kualitas Premium</h3>
+                    <p>Diproduksi menggunakan 100% daging ikan tenggiri asli tanpa campuran bahan pengawet buatan.</p>
+                </div>
             </div>
             <div class="value-item reveal">
                 <div class="value-icon"><i class="fa-solid fa-box-open"></i></div>
-                <div class="value-text"><h3>Packaging Vakum Standar</h3><p>Kemasan hampa udara memastikan produk bertahan hingga 1 bulan di suhu freezer (-18°C).</p></div>
+                <div class="value-text">
+                    <h3>Packaging Vakum Standar Retail</h3>
+                    <p>Kemasan hampa udara memastikan produk bertahan hingga 3 bulan di suhu freezer (-18°C).</p>
+                </div>
             </div>
             <div class="value-item reveal">
                 <div class="value-icon"><i class="fa-solid fa-chart-pie"></i></div>
-                <div class="value-text"><h3>Profit Margin Menarik</h3><p>Struktur harga dirancang untuk memberikan keuntungan bersih yang sangat lumayan bagi mitra.</p></div>
+                <div class="value-text">
+                    <h3>Profit Margin Menarik</h3>
+                    <p>Struktur harga dirancang untuk memberikan keuntungan bersih yang sangat lumayan bagi mitra kami.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="section" style="background-color: var(--bg-body);">
         <div class="section-header reveal">
-            <h2 class="section-title">Keranjang Belanja Mitra</h2>
-            <p class="section-subtitle">Pilih paket jualanmu. Tombol checkout akan terbuka otomatis setelah 5 item.</p>
+            <h2 class="section-title">Katalog Paket Frozen</h2>
+            <p class="section-subtitle">Pilihan paket lengkap yang siap Anda pasarkan</p>
         </div>
 
-        <div class="info-grosir reveal">
-            <h3><i class="fa-solid fa-circle-exclamation"></i> Syarat & Ketentuan Reseller</h3>
-            <p>Dapatkan harga pabrik dengan <strong>Minimal Pembelian 5 Pcs/Paket</strong> (Boleh dicampur).</p>
-        </div>
-
-        <div class="menu-container reveal" id="menu-reseller">
+        <div class="menu-grid">
+            <div class="menu-card reveal">
+                <img src="Gemini_Generated_Image_npbap9npbap9npba (4).png" alt="Paket Mix Frozen" loading="lazy">
             </div>
+            <div class="menu-card reveal">
+                <img src="Gemini_Generated_Image_npbap9npbap9npba (3).png" alt="Paket Kapal Selam Combo" loading="lazy">
+            </div>
+            <div class="menu-card reveal">
+                <img src="Gemini_Generated_Image_npbap9npbap9npba (1).png" alt="Paket Keluarga Besar" loading="lazy">
+            </div>
+            <div class="menu-card reveal">
+                <img src="Gemini_Generated_Image_npbap9npbap9npba.png" alt="Paket Tekwan Praktis" loading="lazy">
+            </div>
+        </div>
     </section>
 
     <section class="section">
@@ -214,42 +318,86 @@
             <h2 class="section-title">Alur Kemitraan</h2>
             <p class="section-subtitle">Mulai bisnis Anda dalam 3 langkah sederhana</p>
         </div>
+
         <div class="steps-container">
             <div class="step-item reveal">
                 <div class="step-number">01</div>
-                <div><h4>Pilih Paket Grosir</h4><p>Pilih paket pempek frozen minimal 5 paket di keranjang belanja di atas.</p></div>
+                <div>
+                    <h4>Konsultasi & Pendaftaran</h4>
+                    <p>Klik tombol Kemitraan dan isi form untuk memilih paket awal (Minimal 10 pcs).</p>
+                </div>
             </div>
             <div class="step-item reveal">
                 <div class="step-number">02</div>
-                <div><h4>Checkout & Pembayaran</h4><p>Isi alamat lengkap dan selesaikan pembayaran via QRIS atau bayar di tempat (COD).</p></div>
+                <div>
+                    <h4>Checkout & Pembayaran</h4>
+                    <p>Selesaikan pembayaran via QRIS secara otomatis atau pilih bayar di tempat (COD).</p>
+                </div>
             </div>
             <div class="step-item reveal">
                 <div class="step-number">03</div>
-                <div><h4>Pengiriman Produk</h4><p>Produk dikirim menggunakan Instan/Sameday atau ekspedisi khusus Frozen Food.</p></div>
+                <div>
+                    <h4>Pengiriman Produk</h4>
+                    <p>Khusus wilayah <b>Jakarta Barat</b>, nikmati fasilitas <b>Gratis Ongkir</b> dan pengiriman cepat H+1.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" style="background-color: var(--bg-body);">
         <div class="section-header reveal">
-            <h2 class="section-title">Simulasi Pendapatan</h2>
-            <p class="section-subtitle">Geser tombol di bawah untuk melihat potensi laba Anda</p>
+            <h2 class="section-title">Struktur Harga Mitra</h2>
+            <p class="section-subtitle">Harga khusus berlaku untuk pemesanan minimal 10 paket</p>
         </div>
-        <div class="calculator-card reveal">
-            <div class="calc-label">Target Jual per Hari: <br><span id="targetVal" class="highlight-text">10 Paket</span></div>
-            <input type="range" id="salesSlider" min="1" max="100" value="10" class="slider">
-            <div class="calc-result">
-                <p>Potensi Laba Bersih per Bulan (30 Hari):</p>
-                <h3 id="profitTotal">Rp 750.000</h3>
+
+        <div class="pricing-grid">
+            <div class="pricing-card reveal">
+                <div class="pricing-title">Paket Mix (Isi 10)</div>
+                <div class="pricing-retail">SRP: Rp 35.000</div>
+                <div class="pricing-reseller">Rp 28.000</div>
+                <div class="pricing-margin">Margin: Rp 7.000</div>
+            </div>
+            <div class="pricing-card reveal">
+                <div class="pricing-title">Kapal Selam Combo</div>
+                <div class="pricing-retail">SRP: Rp 38.000</div>
+                <div class="pricing-reseller">Rp 31.000</div>
+                <div class="pricing-margin">Margin: Rp 7.000</div>
+            </div>
+            <div class="pricing-card reveal">
+                <div class="pricing-title">Paket Keluarga (Isi 20)</div>
+                <div class="pricing-retail">SRP: Rp 65.000</div>
+                <div class="pricing-reseller">Rp 55.000</div>
+                <div class="pricing-margin">Margin: Rp 10.000</div>
+            </div>
+            <div class="pricing-card reveal">
+                <div class="pricing-title">Tekwan Praktis</div>
+                <div class="pricing-retail">SRP: Rp 28.000</div>
+                <div class="pricing-reseller">Rp 23.000</div>
+                <div class="pricing-margin">Margin: Rp 5.000</div>
             </div>
         </div>
     </section>
 
+    <div class="promo-banner reveal">
+        <div class="promo-badge">Penawaran Terbatas</div>
+        <h3>Gratis Ongkir (Khusus Jakarta Barat) & Starter Kit Promosi</h3>
+        <p>Promo hangus pada akhir hari ini dalam:</p>
+        <div class="countdown" id="countdown">
+            <div class="time-box"><span id="hours">00</span><small>Jam</small></div>
+            <div class="time-box"><span id="minutes">00</span><small>Menit</small></div>
+            <div class="time-box"><span id="seconds">00</span><small>Detik</small></div>
+        </div>
+    </div>
+
     <section class="section">
         <div class="section-header reveal">
-            <div class="shopee-badge-title"><i class="fa-solid fa-star"></i> Penilaian Pelanggan</div>
+            <div class="shopee-badge-title">
+                <i class="fa-solid fa-star"></i> Penilaian Pelanggan di ShopeeFood
+            </div>
             <h2 class="section-title">Apa Kata Mereka?</h2>
+            <p class="section-subtitle">100% Ulasan asli dari pelanggan kami</p>
         </div>
+
         <div class="shopee-review-grid">
             <div class="shopee-card reveal">
                 <div class="sr-header">
@@ -259,9 +407,10 @@
                         <div class="sr-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     </div>
                 </div>
-                <div style="font-size: 11px; color: var(--text-muted); background: var(--bg-body); padding: 4px 8px; border-radius: 6px; display: inline-block; margin-bottom: 10px;">Variasi: Paket Frozen Campur (Isi 5)</div>
-                <p class="sr-text">"Pempeknya enak banget, kerasa ikan tenggirinya. Pas dikemas vakum isi 5 kecil begini jadi gampang banget buat dijual ulang per paket ke tetangga!"</p>
+                <div class="sr-variant">Variasi: Paket Mix (Isi 10)</div>
+                <p class="sr-text">"Pempeknya enak banget, kerasa ikan tenggirinya bukan tepung doang. Cukonya juga kental dan pedesnya pas. Mantap buat nyetok di kulkas!"</p>
             </div>
+            
             <div class="shopee-card reveal">
                 <div class="sr-header">
                     <div class="sr-avatar">A*u</div>
@@ -270,66 +419,96 @@
                         <div class="sr-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     </div>
                 </div>
-                <div style="font-size: 11px; color: var(--text-muted); background: var(--bg-body); padding: 4px 8px; border-radius: 6px; display: inline-block; margin-bottom: 10px;">Variasi: Frozen Kapal Selam Besar</div>
-                <p class="sr-text">"Kapal selam frozen-nya mantap, isian telurnya utuh dan ukurannya jumbo. Untung ambil grosir dapet harga murah banget, pelanggan saya pada nagih."</p>
+                <div class="sr-variant">Variasi: Kapal Selam Combo</div>
+                <p class="sr-text">"Penyelamat pas lagi lapar malam-malam. Tinggal digoreng cepet banget. Kemasan vakumnya rapi jadi aman banget waktu dikirim."</p>
+            </div>
+
+            <div class="shopee-card reveal">
+                <div class="sr-header">
+                    <div class="sr-avatar">R*a</div>
+                    <div class="sr-info">
+                        <div class="sr-name">Reza P*** <span class="sr-date">01 Mei 2026</span></div>
+                        <div class="sr-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    </div>
+                </div>
+                <div class="sr-variant">Variasi: Tekwan Praktis</div>
+                <p class="sr-text">"Kuah tekwannya seger banget bumbu udangnya berasa. Anak saya suka banget. Bakal repeat order terus nih 👍"</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header reveal">
+            <h2 class="section-title">Simulasi Pendapatan</h2>
+            <p class="section-subtitle">Geser tombol di bawah untuk melihat potensi laba Anda</p>
+        </div>
+
+        <div class="calculator-card reveal">
+            <div class="calc-label">Target Jual per Hari: <br><span id="targetVal" class="highlight-text">10 Paket</span></div>
+            <input type="range" id="salesSlider" min="1" max="100" value="10" class="slider" aria-label="Target Jual per Hari">
+            <div class="calc-result">
+                <p>Potensi Laba Bersih per Bulan (30 Hari):</p>
+                <h3 id="profitTotal">Rp 2.100.000</h3>
             </div>
         </div>
     </section>
 
     <section class="section" style="background-color: var(--bg-body);">
-        <div class="section-header reveal"><h2 class="section-title">Tanya Jawab (FAQ)</h2></div>
+        <div class="section-header reveal">
+            <h2 class="section-title">Tanya Jawab (FAQ)</h2>
+        </div>
+
         <details class="reveal">
-            <summary>Apakah ada biaya pendaftaran?</summary>
-            <div class="faq-content">Tidak ada. Anda hanya perlu membeli produk senilai syarat minimal order grosir di keranjang (Minimal 5 paket/pcs). Anda langsung resmi menjadi mitra.</div>
+            <summary>Apakah ada biaya pendaftaran (franchise fee)?</summary>
+            <div class="faq-content">Tidak ada. Anda hanya perlu membeli produk senilai syarat minimal order (15 paket) di awal. Anda langsung resmi menjadi mitra kami.</div>
         </details>
         <details class="reveal">
             <summary>Bagaimana cara penyimpanan produk?</summary>
-            <div class="faq-content">Produk dikirim dalam keadaan beku (frozen). Segera simpan di dalam freezer bersuhu -18°C agar tahan hingga 1 bulan.</div>
+            <div class="faq-content">Produk dikirim dalam keadaan beku (frozen). Segera simpan di dalam freezer bersuhu -18°C agar tahan hingga 3 bulan. Jika di suhu ruang (pengiriman), tahan maksimal 2 hari.</div>
         </details>
         <details class="reveal">
             <summary>Apakah foto produk disediakan?</summary>
-            <div class="faq-content">Tentu. Kami menyediakan bank data foto bebas lisensi yang bisa Anda gunakan untuk jualan online.</div>
+            <div class="faq-content">Tentu. Kami menyediakan bank data berisi foto dan video produk berkualitas tinggi yang bebas Anda gunakan untuk promosi di media sosial.</div>
         </details>
     </section>
+
 </div>
 
-<a href="https://shopee.co.id/" class="shopee-float" target="_blank" title="Kunjungi Shopee Kami">
-    <i class="fa-solid fa-shop"></i>
-</a>
-
 <div class="sticky-bottom">
-    <div class="cart-total">
-        <h4>Total (<span id="total-qty">0</span> Item)</h4>
-        <h2 id="total-price">Rp 0</h2>
+    <div class="button-group">
+        <a href="https://shopee.co.id/universal-link/now-food/shop/21538924?deep_and_deferred=1&shareChannel=whatsapp" class="btn-shopee" target="_blank">
+            <i class="fa-solid fa-motorcycle" style="font-size: 18px;"></i>
+            ShopeeFood
+        </a>
+        <button onclick="openModal('mitraModal')" class="btn-primary">
+            <i class="fa-brands fa-whatsapp" style="font-size: 18px; color: var(--wa-green);"></i>
+            Kemitraan
+        </button>
     </div>
-    <button class="btn-checkout" id="btn-checkout" disabled onclick="openModal('mitraModal')">
-        <i class="fa-solid fa-lock"></i> Min. 5 Paket
-    </button>
 </div>
 
 <div id="mitraModal" class="modal-overlay">
     <div class="modal-box">
         <span class="close-modal" onclick="closeModal('mitraModal')"><i class="fa-solid fa-xmark"></i></span>
-        <h3 style="margin-bottom: 15px; color: var(--dark);">Lengkapi Data Pengiriman</h3>
+        <h3 style="margin-bottom: 15px; color: var(--dark);">Mulai Kemitraan Anda</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Isi data singkat di bawah ini agar tim kami bisa memberikan penawaran terbaik sesuai lokasi Anda.</p>
         
-        <input type="text" id="waNama" class="form-input" placeholder="Nama Lengkap / Nama Toko" required>
-        <textarea id="waAlamat" class="form-input" rows="2" placeholder="Alamat Lengkap Pengiriman" required></textarea>
-        
-        <select id="waMetodeKirim" class="form-input" required>
-            <option value="" disabled selected>Pilih Kurir Pengiriman...</option>
-            <option value="Grab/Gojek Instan">Grab/Gojek Instan (Jabodetabek)</option>
-            <option value="Jasa Ekspedisi Next Day">Jasa Ekspedisi (J&T / Paxel / SiCepat)</option>
-            <option value="Ambil Sendiri ke Ruko">Ambil Sendiri ke Ruko Ibu Ita</option>
+        <input type="text" id="waNama" class="form-input" placeholder="Nama Lengkap" required>
+        <input type="text" id="waKota" class="form-input" placeholder="Kota Domisili (Contoh: Jakarta Barat)" required>
+        <select id="waPaket" class="form-input" required>
+            <option value="" disabled selected>Pilih Rencana Awal Berjualan...</option>
+            <option value="Pemula (Min. 10 Paket)">Pemula (Min. 10 Paket)</option>
+            <option value="Agen (Min. 50 Paket)">Agen (Min. 50 Paket) - Bonus Spanduk</option>
+            <option value="Distributor (Min. 150 Paket)">Distributor (Min. 150 Paket) - Termurah</option>
         </select>
-
-        <select id="waMetodeBayar" class="form-input" required style="border-color: var(--primary);">
+        <select id="waMetode" class="form-input" required style="border-color: var(--primary);">
             <option value="" disabled selected>Pilih Metode Pembayaran...</option>
-            <option value="QRIS / Transfer">Bayar via QRIS / E-Wallet</option>
-            <option value="Bayar Tunai (COD)">Bayar Tunai (COD / Di Toko)</option>
+            <option value="QRIS / Transfer (Otomatis)">Bayar via QRIS / E-Wallet</option>
+            <option value="Bayar Tunai (COD / Di Toko)">Bayar Tunai (COD / Di Toko)</option>
         </select>
         
-        <button onclick="prosesKeCheckout()" class="btn-checkout" style="width: 100%; justify-content: center; margin-top: 10px;">
-            Proses Pesanan Grosir <i class="fa-solid fa-arrow-right"></i>
+        <button onclick="prosesKeCheckout()" class="btn-primary" style="width: 100%;">
+            Proses Pesanan <i class="fa-solid fa-arrow-right"></i>
         </button>
     </div>
 </div>
@@ -337,30 +516,36 @@
 <div id="checkoutModal" class="modal-overlay">
     <div class="modal-box checkout-box">
         <span class="close-modal" onclick="closeModal('checkoutModal')"><i class="fa-solid fa-xmark"></i></span>
-        <h3 style="color: var(--primary); margin-bottom: 5px;">Selesaikan Pembayaran</h3>
-        <p style="font-size: 13px; margin-bottom: 15px; color: var(--text-muted);">Total Tagihan Grosir Anda:</p>
+        <h3 style="color: var(--primary); margin-bottom: 5px;">Checkout Pembayaran</h3>
+        <p style="font-size: 13px; margin-bottom: 15px; color: var(--text-muted);">Silakan selesaikan pembayaran untuk aktivasi kemitraan Anda.</p>
         
         <div class="payment-info">
-            <h2 style="color: var(--dark); text-align: center; margin-bottom: 5px;" id="qrisTotalDisplay">Rp 0</h2>
-            <p style="text-align: center;">Metode: <strong>QRIS (All E-Wallet)</strong></p>
+            <p>Atas Nama: <strong>JASA PAKAR (Pempek Ibu Ita)</strong></p>
+            <p>Paket: <strong id="checkoutPaket">...</strong></p>
+            <p>Metode: <strong>QRIS (All E-Wallet)</strong></p>
         </div>
 
         <img src="WhatsApp%20Image%202026-05-15%20at%2018.08.30.jpeg" alt="QRIS Pempek Ibu Ita" class="qris-img">
-        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px; margin-top: 10px;">*Screenshot QRIS di atas lalu scan di aplikasi DANA, OVO, atau M-Banking.</p>
         
-        <button onclick="konfirmasiPembayaran()" class="btn-checkout" style="width: 100%; justify-content: center; background: #16a34a;">
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px; margin-top: 10px;">*Screenshot QRIS di atas lalu scan di aplikasi DANA, OVO, GoPay atau Mobile Banking Anda.</p>
+        
+        <button onclick="konfirmasiPembayaran()" class="btn-primary" style="width: 100%; background: #16a34a;">
             <i class="fa-solid fa-check-double"></i> Saya Sudah Bayar
         </button>
     </div>
 </div>
 
 <script type="module">
-    // --- 1. UI EFFECTS ---
+    // --- 1. UI SCRIPTS (ASLI) ---
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        document.getElementById('scrollProgress').style.width = ((winScroll / height) * 100) + '%';
-        document.getElementById('navbar').style.boxShadow = winScroll > 50 ? "0 4px 20px rgba(0,0,0,0.05)" : "none";
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('scrollProgress').style.width = scrolled + '%';
+        
+        const navbar = document.getElementById('navbar');
+        if(winScroll > 50) navbar.style.boxShadow = "0 4px 20px rgba(0,0,0,0.05)";
+        else navbar.style.boxShadow = "none";
     });
 
     const slider = document.querySelector('.image-slider');
@@ -374,94 +559,44 @@
     }, 3500);
 
     function reveal() {
-        const reveals = document.querySelectorAll(".reveal");
-        reveals.forEach(rev => {
-            if(rev.getBoundingClientRect().top < window.innerHeight - 50) rev.classList.add("active");
-        });
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            if (elementTop < windowHeight - 50) reveals[i].classList.add("active");
+        }
     }
-    window.addEventListener("scroll", reveal); reveal(); 
+    window.addEventListener("scroll", reveal);
+    reveal(); 
 
     const salesSlider = document.getElementById('salesSlider');
+    const targetVal = document.getElementById('targetVal');
+    const profitTotal = document.getElementById('profitTotal');
     salesSlider.addEventListener('input', function() {
-        document.getElementById('targetVal').textContent = this.value + " Paket";
-        document.getElementById('profitTotal').textContent = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(this.value * 30 * 2500);
+        targetVal.textContent = this.value + " Paket";
+        profitTotal.textContent = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(this.value * 30 * 7000);
     });
 
-    window.openModal = id => document.getElementById(id).classList.add('active');
-    window.closeModal = id => document.getElementById(id).classList.remove('active');
-
-    // --- 2. LOGIKA KERANJANG GROSIR ---
-    const menuData = [
-        { id: 'r_campur', name: 'Paket Frozen Campur (Isi 5)', desc: 'Harga Modal Rp 2.500/pcs', normal: 15000, price: 12500 },
-        { id: 'r_lenjer', name: 'Paket Frozen Lenjer (Isi 5)', desc: 'Harga Modal Rp 2.500/pcs', normal: 15000, price: 12500 },
-        { id: 'r_adaan', name: 'Paket Frozen Adaan (Isi 5)', desc: 'Harga Modal Rp 2.500/pcs', normal: 15000, price: 12500 },
-        { id: 'r_telur', name: 'Paket Frozen Telur Kecil (Isi 5)', desc: 'Harga Modal Rp 2.500/pcs', normal: 15000, price: 12500 },
-        { id: 'r_kulit', name: 'Paket Frozen Kulit (Isi 5)', desc: 'Harga Modal Rp 2.500/pcs', normal: 15000, price: 12500 },
-        { id: 'r_kapal', name: 'Frozen Kapal Selam Besar', desc: 'Harga Modal Rp 16.000/pcs', normal: 18000, price: 16000 }
-    ];
-
-    let cart = {};
-    let globalTotalHarga = 0;
-
-    function renderMenu() {
-        const container = document.getElementById('menu-reseller');
-        menuData.forEach(item => {
-            cart[item.id] = 0; 
-            const div = document.createElement('div');
-            div.className = 'menu-item';
-            div.innerHTML = `
-                <div class="menu-info">
-                    <div class="menu-name">${item.name}</div>
-                    <div class="menu-desc">${item.desc}</div>
-                    <div class="price-box">
-                        <span class="coret">Rp ${item.normal.toLocaleString('id-ID')}</span>
-                        <span class="menu-price">Rp ${item.price.toLocaleString('id-ID')}</span>
-                    </div>
-                </div>
-                <div class="qty-control">
-                    <button class="qty-btn" onclick="updateQty('${item.id}', -1)"><i class="fa-solid fa-minus"></i></button>
-                    <div class="qty-value" id="qty-${item.id}">0</div>
-                    <button class="qty-btn" onclick="updateQty('${item.id}', 1)"><i class="fa-solid fa-plus"></i></button>
-                </div>
-            `;
-            container.appendChild(div);
-        });
-    }
-
-    window.updateQty = function(id, change) {
-        if(cart[id] + change >= 0) {
-            cart[id] += change;
-            document.getElementById(`qty-${id}`).innerText = cart[id];
-            calculateTotal();
+    function startCountdown() {
+        function updateTimer() {
+            const now = new Date();
+            const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+            const diff = endOfDay - now;
+            if (diff <= 0) return;
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }
+        updateTimer();
+        setInterval(updateTimer, 1000); 
     }
+    startCountdown();
 
-    function calculateTotal() {
-        globalTotalHarga = 0; 
-        let totalItems = 0;
-        
-        menuData.forEach(item => {
-            globalTotalHarga += cart[item.id] * item.price;
-            totalItems += cart[item.id];
-        });
-        
-        document.getElementById('total-price').innerText = `Rp ${globalTotalHarga.toLocaleString('id-ID')}`;
-        document.getElementById('qrisTotalDisplay').innerText = `Rp ${globalTotalHarga.toLocaleString('id-ID')}`;
-        document.getElementById('total-qty').innerText = totalItems;
-        
-        const btn = document.getElementById('btn-checkout');
-        if(totalItems >= 5) {
-            btn.disabled = false;
-            btn.innerHTML = `Checkout Grosir <i class="fa-solid fa-arrow-right"></i>`;
-            btn.style.background = "var(--primary)";
-        } else {
-            btn.disabled = true;
-            btn.innerHTML = `<i class="fa-solid fa-lock"></i> Kurang ${5 - totalItems} Lagi`;
-            btn.style.background = "#cbd5e1";
-        }
-    }
+    // --- 2. MODAL LOGIC ---
+    window.openModal = function(id) { document.getElementById(id).classList.add('active'); }
+    window.closeModal = function(id) { document.getElementById(id).classList.remove('active'); }
 
-    // --- 3. FIREBASE INTEGRATION (v10 Modular) ---
+    // --- 3. FIREBASE INTEGRATION & LOGIKA COD ---
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
@@ -478,88 +613,79 @@
     const db = getFirestore(app);
     let currentOrderId = null; 
 
+    // Step 1: Simpan data dan jalankan percabangan metode
     window.prosesKeCheckout = async function() {
         let nama = document.getElementById('waNama').value;
-        let alamat = document.getElementById('waAlamat').value;
-        let pengiriman = document.getElementById('waMetodeKirim').value;
-        let bayar = document.getElementById('waMetodeBayar').value;
+        let kota = document.getElementById('waKota').value;
+        let paket = document.getElementById('waPaket').value;
+        let metode = document.getElementById('waMetode').value;
         
-        if(!nama || !alamat || !pengiriman || !bayar) { alert('Mohon lengkapi semua form pengiriman ya!'); return; }
+        if(!nama || !kota || !paket || !metode) { alert('Mohon lengkapi semua pilihan datanya ya, Kak!'); return; }
 
-        const btn = document.querySelector('#mitraModal .btn-checkout');
+        const btn = document.querySelector('#mitraModal .btn-primary');
         const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
         btn.disabled = true;
 
-        let orderList = "";
-        let orderItemsForDB = [];
-
-        menuData.forEach(item => {
-            if(cart[item.id] > 0) {
-                let subtotal = cart[item.id] * item.price;
-                orderList += `▪️ ${cart[item.id]}x ${item.name} (Rp ${subtotal.toLocaleString('id-ID')})\n`;
-                orderItemsForDB.push({ namaMenu: "(GROSIR) " + item.name, qty: cart[item.id], subtotal: subtotal });
-            }
-        });
-
         try {
-            let statusAwal = bayar.includes("Tunai") ? "COD" : "UNPAID";
-            const docRef = await addDoc(collection(db, "orders"), { 
-                namaPelanggan: "[AGEN] " + nama,
-                tipePesanan: pengiriman,
-                alamatPengiriman: alamat,
-                metodePembayaran: bayar,
-                catatanTambahan: "-",
-                daftarPesanan: orderItemsForDB,
-                totalBelanja: globalTotalHarga,
-                status: statusAwal,
-                tanggalOrder: serverTimestamp()
+            // Tentukan status awal berdasarkan metode
+            let statusAwal = metode.includes("Tunai") ? "COD" : "UNPAID";
+            
+            const docRef = await addDoc(collection(db, "calon_mitra"), {
+                nama: nama, domisili: kota, paket: paket, metode: metode, status: statusAwal, waktuDaftar: serverTimestamp()
             });
             currentOrderId = docRef.id;
 
-            if (bayar.includes("Tunai")) {
-                let waNumber = "6289508573323"; 
-                let textMessage = `*ORDER GROSIR BARU (COD)* 📦\n\n👤 *Nama/Toko:* ${nama}\n📍 *Alamat:* ${alamat}\n🛵 *Pengiriman:* ${pengiriman}\n\n*DETAIL PESANAN:*\n${orderList}\n*TOTAL TAGIHAN: Rp ${globalTotalHarga.toLocaleString('id-ID')}*\n\nMohon info kapan pesanan saya bisa dikirim ya bu.`;
+            // LOGIKA PERCABANGAN:
+            if (metode.includes("Tunai")) {
+                // JIKA PILIH TUNAI: Langsung lemparkan ke WA, lewati QRIS
+                let waNumber = "6289637384530"; 
+                let textMessage = `Halo Tim Ibu Ita! 🐟\n\nSaya ingin memesan paket kemitraan.\n\n👤 *Nama:* ${nama}\n📍 *Domisili:* ${kota}\n📦 *Paket:* ${paket}\n💳 *Metode:* Bayar Tunai (COD / Di Toko)\n\nMohon info kapan pesanan saya bisa dikirim/diambil ya.`;
+                
                 window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(textMessage)}`, '_blank');
-                closeModal('mitraModal');
+                window.closeModal('mitraModal');
             } else {
-                closeModal('mitraModal');
-                openModal('checkoutModal');
+                // JIKA PILIH QRIS: Buka Modal Pembayaran
+                document.getElementById('checkoutPaket').innerText = paket;
+                window.closeModal('mitraModal');
+                window.openModal('checkoutModal');
             }
+
         } catch (e) {
-            alert("Terjadi kesalahan koneksi, silakan coba lagi.");
+            alert("Terjadi kesalahan sistem, silakan coba lagi.");
         } finally {
             btn.innerHTML = originalText;
             btn.disabled = false;
         }
     }
 
+    // Step 2: Khusus untuk yang pilih QRIS dan tekan "Saya Sudah Bayar"
     window.konfirmasiPembayaran = async function() {
         if(!currentOrderId) return;
-        const btn = document.querySelector('#checkoutModal .btn-checkout');
+        
+        const btn = document.querySelector('#checkoutModal .btn-primary');
         const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memverifikasi...';
         btn.disabled = true;
 
         try {
-            const orderRef = doc(db, "orders", currentOrderId);
+            const orderRef = doc(db, "calon_mitra", currentOrderId);
             await updateDoc(orderRef, { status: "PAID" });
 
             let nama = document.getElementById('waNama').value;
-            let waNumber = "6289508573323"; 
-            let textMessage = `*KONFIRMASI PEMBAYARAN GROSIR* ✅\n\n👤 *Nama/Toko:* ${nama}\n💰 *Jumlah:* Rp ${globalTotalHarga.toLocaleString('id-ID')}\n💳 *Metode:* QRIS Verified\n\nSaya sudah melakukan pembayaran untuk pesanan grosir saya. Mohon segera diproses ya!`;
+            let paket = document.getElementById('waPaket').value;
+            let waNumber = "6289637384530"; 
+            let textMessage = `Halo Tim Ibu Ita! 🐟\n\nSAYA SUDAH MEMBAYAR untuk pesanan kemitraan.\n\n👤 *Nama:* ${nama}\n📦 *Paket:* ${paket}\n✅ *Status Sistem:* PAID (QRIS Verified)\n\nMohon dicek mutasinya dan segera diproses pengirimannya.`;
             
             window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(textMessage)}`, '_blank');
-            closeModal('checkoutModal');
+            window.closeModal('checkoutModal');
         } catch (e) {
-            alert("Terjadi kesalahan saat verifikasi.");
+            alert("Terjadi kesalahan sistem saat verifikasi.");
         } finally {
             btn.innerHTML = originalText;
             btn.disabled = false;
         }
     }
-
-    renderMenu();
 </script>
 
 </body>
